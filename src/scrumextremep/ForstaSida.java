@@ -27,74 +27,74 @@ public class ForstaSida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Rubrik = new java.awt.Label();
-        username = new javax.swing.JTextField();
-        password = new javax.swing.JPasswordField();
-        login = new javax.swing.JButton();
+        lblRubrik = new java.awt.Label();
+        tfAnvNamn = new javax.swing.JTextField();
+        pfLosenord = new javax.swing.JPasswordField();
+        btnLoggaIn = new javax.swing.JButton();
         blog = new java.awt.List();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        blogflow = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        calendar = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
+        spBlogFlow = new javax.swing.JScrollPane();
+        taBlogFlow = new javax.swing.JTextArea();
+        spCalender = new javax.swing.JScrollPane();
+        taCalender = new javax.swing.JTextArea();
+        lblBakgrundVit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        Rubrik.setAlignment(java.awt.Label.CENTER);
-        Rubrik.setBackground(new java.awt.Color(255, 255, 255));
-        Rubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
-        Rubrik.setText("Informatikblogg");
-        getContentPane().add(Rubrik);
-        Rubrik.setBounds(240, 0, 480, 120);
+        lblRubrik.setAlignment(java.awt.Label.CENTER);
+        lblRubrik.setBackground(new java.awt.Color(255, 255, 255));
+        lblRubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
+        lblRubrik.setText("Informatikblogg");
+        getContentPane().add(lblRubrik);
+        lblRubrik.setBounds(240, 0, 480, 120);
 
-        username.setText("Användarnamn");
-        username.addActionListener(new java.awt.event.ActionListener() {
+        tfAnvNamn.setText("Användarnamn");
+        tfAnvNamn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
+                tfAnvNamnActionPerformed(evt);
             }
         });
-        getContentPane().add(username);
-        username.setBounds(770, 50, 160, 30);
+        getContentPane().add(tfAnvNamn);
+        tfAnvNamn.setBounds(770, 50, 160, 30);
 
-        password.setText("jPasswordField1");
-        getContentPane().add(password);
-        password.setBounds(770, 100, 160, 30);
+        pfLosenord.setText("jPasswordField1");
+        getContentPane().add(pfLosenord);
+        pfLosenord.setBounds(770, 100, 160, 30);
 
-        login.setText("Logga in");
-        getContentPane().add(login);
-        login.setBounds(860, 140, 73, 23);
+        btnLoggaIn.setText("Logga in");
+        getContentPane().add(btnLoggaIn);
+        btnLoggaIn.setBounds(860, 140, 78, 32);
         getContentPane().add(blog);
         blog.setBounds(770, 210, 150, 360);
 
-        blogflow.setColumns(20);
-        blogflow.setRows(5);
-        jScrollPane1.setViewportView(blogflow);
+        taBlogFlow.setColumns(20);
+        taBlogFlow.setRows(5);
+        spBlogFlow.setViewportView(taBlogFlow);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(220, 210, 510, 360);
+        getContentPane().add(spBlogFlow);
+        spBlogFlow.setBounds(260, 210, 510, 360);
 
-        calendar.setColumns(20);
-        calendar.setRows(5);
-        calendar.setText("Här ska kalendern \nligga");
-        jScrollPane2.setViewportView(calendar);
+        taCalender.setColumns(20);
+        taCalender.setRows(5);
+        taCalender.setText("Här ska kalendern \nligga");
+        spCalender.setViewportView(taCalender);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(30, 210, 166, 150);
+        getContentPane().add(spCalender);
+        spCalender.setBounds(30, 210, 223, 150);
 
-        jLabel2.setBackground(java.awt.Color.white);
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
-        jLabel2.setText("jLabel1");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1070, 700);
+        lblBakgrundVit.setBackground(java.awt.Color.white);
+        lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
+        lblBakgrundVit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
+        lblBakgrundVit.setText("jLabel1");
+        getContentPane().add(lblBakgrundVit);
+        lblBakgrundVit.setBounds(0, 0, 1000, 700);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+    private void tfAnvNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAnvNamnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameActionPerformed
+    }//GEN-LAST:event_tfAnvNamnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,15 +133,15 @@ public class ForstaSida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Label Rubrik;
     private java.awt.List blog;
-    private javax.swing.JTextArea blogflow;
-    private javax.swing.JTextArea calendar;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton login;
-    private javax.swing.JPasswordField password;
-    private javax.swing.JTextField username;
+    private javax.swing.JButton btnLoggaIn;
+    private javax.swing.JLabel lblBakgrundVit;
+    private java.awt.Label lblRubrik;
+    private javax.swing.JPasswordField pfLosenord;
+    private javax.swing.JScrollPane spBlogFlow;
+    private javax.swing.JScrollPane spCalender;
+    private javax.swing.JTextArea taBlogFlow;
+    private javax.swing.JTextArea taCalender;
+    private javax.swing.JTextField tfAnvNamn;
     // End of variables declaration//GEN-END:variables
 }
