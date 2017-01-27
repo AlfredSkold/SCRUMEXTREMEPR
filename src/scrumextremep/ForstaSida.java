@@ -27,31 +27,74 @@ public class ForstaSida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        Rubrik = new java.awt.Label();
+        username = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
+        login = new javax.swing.JButton();
+        blog = new java.awt.List();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        blogflow = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        calendar = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        jLabel1.setText("jLabel1");
+        Rubrik.setAlignment(java.awt.Label.CENTER);
+        Rubrik.setBackground(new java.awt.Color(255, 255, 255));
+        Rubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
+        Rubrik.setText("Informatikblogg");
+        getContentPane().add(Rubrik);
+        Rubrik.setBounds(240, 0, 480, 120);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(209, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(157, 157, 157))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jLabel1)
-                .addContainerGap(191, Short.MAX_VALUE))
-        );
+        username.setText("Användarnamn");
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(username);
+        username.setBounds(770, 50, 160, 30);
+
+        password.setText("jPasswordField1");
+        getContentPane().add(password);
+        password.setBounds(770, 100, 160, 30);
+
+        login.setText("Logga in");
+        getContentPane().add(login);
+        login.setBounds(860, 140, 73, 23);
+        getContentPane().add(blog);
+        blog.setBounds(770, 210, 150, 360);
+
+        blogflow.setColumns(20);
+        blogflow.setRows(5);
+        jScrollPane1.setViewportView(blogflow);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(220, 210, 510, 360);
+
+        calendar.setColumns(20);
+        calendar.setRows(5);
+        calendar.setText("Här ska kalendern \nligga");
+        jScrollPane2.setViewportView(calendar);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(30, 210, 166, 150);
+
+        jLabel2.setBackground(java.awt.Color.white);
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
+        jLabel2.setText("jLabel1");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 1070, 700);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,6 +133,15 @@ public class ForstaSida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private java.awt.Label Rubrik;
+    private java.awt.List blog;
+    private javax.swing.JTextArea blogflow;
+    private javax.swing.JTextArea calendar;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton login;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
