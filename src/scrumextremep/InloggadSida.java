@@ -27,18 +27,49 @@ public class InloggadSida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        blogflow = new javax.swing.JTextArea();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        blog = new java.awt.List();
+        Rubrik = new java.awt.Label();
+        jLabel2 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 600));
+        getContentPane().setLayout(null);
+
+        blogflow.setColumns(20);
+        blogflow.setRows(5);
+        jScrollPane1.setViewportView(blogflow);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(220, 210, 510, 360);
+
+        jTabbedPane2.addTab("tab1", jTabbedPane3);
+
+        jTabbedPane1.addTab("tab1", jTabbedPane2);
+
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(0, 0, 1070, 710);
+        getContentPane().add(blog);
+        blog.setBounds(770, 210, 150, 360);
+
+        Rubrik.setAlignment(java.awt.Label.CENTER);
+        Rubrik.setBackground(new java.awt.Color(255, 255, 255));
+        Rubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
+        Rubrik.setText("Informatikblogg");
+        getContentPane().add(Rubrik);
+        Rubrik.setBounds(240, 0, 480, 120);
+
+        jLabel2.setBackground(java.awt.Color.white);
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
+        jLabel2.setText("jLabel1");
+        jLabel2.setPreferredSize(new java.awt.Dimension(1000, 600));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 1070, 700);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,5 +110,13 @@ public class InloggadSida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Label Rubrik;
+    private java.awt.List blog;
+    private javax.swing.JTextArea blogflow;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     // End of variables declaration//GEN-END:variables
 }

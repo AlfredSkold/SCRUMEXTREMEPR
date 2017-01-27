@@ -62,8 +62,13 @@ public class ForstaSida extends javax.swing.JFrame {
         pfLosenord.setBounds(770, 100, 160, 30);
 
         btnLoggaIn.setText("Logga in");
+        btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoggaInActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnLoggaIn);
-        btnLoggaIn.setBounds(860, 140, 78, 32);
+        btnLoggaIn.setBounds(860, 140, 75, 25);
         getContentPane().add(blog);
         blog.setBounds(770, 210, 150, 360);
 
@@ -80,7 +85,7 @@ public class ForstaSida extends javax.swing.JFrame {
         spCalender.setViewportView(taCalender);
 
         getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 223, 150);
+        spCalender.setBounds(30, 210, 163, 150);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,6 +100,12 @@ public class ForstaSida extends javax.swing.JFrame {
     private void tfAnvNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAnvNamnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfAnvNamnActionPerformed
+
+    private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
+        InloggadSida ny = new InloggadSida();
+        ny.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnLoggaInActionPerformed
 
     /**
      * @param args the command line arguments
