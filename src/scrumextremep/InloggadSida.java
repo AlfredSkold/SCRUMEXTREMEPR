@@ -28,13 +28,16 @@ public class InloggadSida extends javax.swing.JFrame {
     private void initComponents() {
 
         lblBakgrundVit = new javax.swing.JLabel();
-        spBlogFlow = new javax.swing.JScrollPane();
-        taBlogFlow = new javax.swing.JTextArea();
         spCalender = new javax.swing.JScrollPane();
         taCalender = new javax.swing.JTextArea();
         lblRubrik = new java.awt.Label();
         spBlogTitlar = new javax.swing.JScrollPane();
         tblBlogTitlar = new javax.swing.JTable();
+        tpBloggar = new javax.swing.JTabbedPane();
+        spUtbildning = new javax.swing.JScrollPane();
+        taUtbildning = new javax.swing.JTextArea();
+        spForskning = new javax.swing.JScrollPane();
+        taForskning = new javax.swing.JTextArea();
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
@@ -42,10 +45,6 @@ public class InloggadSida extends javax.swing.JFrame {
         lblBakgrundVit.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        taBlogFlow.setColumns(20);
-        taBlogFlow.setRows(5);
-        spBlogFlow.setViewportView(taBlogFlow);
 
         taCalender.setColumns(20);
         taCalender.setRows(5);
@@ -80,6 +79,18 @@ public class InloggadSida extends javax.swing.JFrame {
         });
         spBlogTitlar.setViewportView(tblBlogTitlar);
 
+        taUtbildning.setColumns(20);
+        taUtbildning.setRows(5);
+        spUtbildning.setViewportView(taUtbildning);
+
+        tpBloggar.addTab("Utbildning", spUtbildning);
+
+        taForskning.setColumns(20);
+        taForskning.setRows(5);
+        spForskning.setViewportView(taForskning);
+
+        tpBloggar.addTab("tab2", spForskning);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,7 +101,7 @@ public class InloggadSida extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(spBlogFlow, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tpBloggar, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(spBlogTitlar, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -101,11 +112,15 @@ public class InloggadSida extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spBlogFlow, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spCalender, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spBlogTitlar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spCalender, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spBlogTitlar, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tpBloggar)))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
@@ -116,49 +131,22 @@ public class InloggadSida extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tblBlogTitlarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InloggadSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InloggadSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InloggadSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InloggadSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InloggadSida().setVisible(true);
-            }
-        });
+    private void fillTblBloggar()
+    {
+        String sqlFragaHamtaBloggar = "select "
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblBakgrundVit;
     private java.awt.Label lblRubrik;
-    private javax.swing.JScrollPane spBlogFlow;
     private javax.swing.JScrollPane spBlogTitlar;
     private javax.swing.JScrollPane spCalender;
-    private javax.swing.JTextArea taBlogFlow;
+    private javax.swing.JScrollPane spForskning;
+    private javax.swing.JScrollPane spUtbildning;
     private javax.swing.JTextArea taCalender;
+    private javax.swing.JTextArea taForskning;
+    private javax.swing.JTextArea taUtbildning;
     private javax.swing.JTable tblBlogTitlar;
+    private javax.swing.JTabbedPane tpBloggar;
     // End of variables declaration//GEN-END:variables
 }
