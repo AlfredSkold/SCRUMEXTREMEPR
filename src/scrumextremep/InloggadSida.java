@@ -27,52 +27,94 @@ public class InloggadSida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        blogflow = new javax.swing.JTextArea();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
-        blog = new java.awt.List();
-        Rubrik = new java.awt.Label();
-        jLabel2 = new javax.swing.JLabel();
+        lblBakgrundVit = new javax.swing.JLabel();
+        spBlogFlow = new javax.swing.JScrollPane();
+        taBlogFlow = new javax.swing.JTextArea();
+        spCalender = new javax.swing.JScrollPane();
+        taCalender = new javax.swing.JTextArea();
+        lblRubrik = new java.awt.Label();
+        spBlogTitlar = new javax.swing.JScrollPane();
+        tblBlogTitlar = new javax.swing.JTable();
+
+        lblBakgrundVit.setBackground(java.awt.Color.white);
+        lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
+        lblBakgrundVit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
+        lblBakgrundVit.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 600));
-        getContentPane().setLayout(null);
 
-        blogflow.setColumns(20);
-        blogflow.setRows(5);
-        jScrollPane1.setViewportView(blogflow);
+        taBlogFlow.setColumns(20);
+        taBlogFlow.setRows(5);
+        spBlogFlow.setViewportView(taBlogFlow);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(220, 210, 510, 360);
+        taCalender.setColumns(20);
+        taCalender.setRows(5);
+        taCalender.setText("Här ska kalendern \nligga");
+        spCalender.setViewportView(taCalender);
 
-        jTabbedPane2.addTab("tab1", jTabbedPane3);
+        lblRubrik.setAlignment(java.awt.Label.CENTER);
+        lblRubrik.setBackground(new java.awt.Color(255, 255, 255));
+        lblRubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
+        lblRubrik.setText("Informatikblogg");
 
-        jTabbedPane1.addTab("tab1", jTabbedPane2);
+        tblBlogTitlar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        getContentPane().add(jTabbedPane1);
-        jTabbedPane1.setBounds(0, 0, 1070, 710);
-        getContentPane().add(blog);
-        blog.setBounds(770, 210, 150, 360);
+            },
+            new String [] {
+                "Titel", "Användare"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        Rubrik.setAlignment(java.awt.Label.CENTER);
-        Rubrik.setBackground(new java.awt.Color(255, 255, 255));
-        Rubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
-        Rubrik.setText("Informatikblogg");
-        getContentPane().add(Rubrik);
-        Rubrik.setBounds(240, 0, 480, 120);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblBlogTitlar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBlogTitlarMouseClicked(evt);
+            }
+        });
+        spBlogTitlar.setViewportView(tblBlogTitlar);
 
-        jLabel2.setBackground(java.awt.Color.white);
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
-        jLabel2.setText("jLabel1");
-        jLabel2.setPreferredSize(new java.awt.Dimension(1000, 600));
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1070, 700);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(spCalender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(spBlogFlow, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(spBlogTitlar, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(spBlogFlow, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spCalender, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spBlogTitlar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblBlogTitlarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBlogTitlarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblBlogTitlarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -110,13 +152,13 @@ public class InloggadSida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Label Rubrik;
-    private java.awt.List blog;
-    private javax.swing.JTextArea blogflow;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JLabel lblBakgrundVit;
+    private java.awt.Label lblRubrik;
+    private javax.swing.JScrollPane spBlogFlow;
+    private javax.swing.JScrollPane spBlogTitlar;
+    private javax.swing.JScrollPane spCalender;
+    private javax.swing.JTextArea taBlogFlow;
+    private javax.swing.JTextArea taCalender;
+    private javax.swing.JTable tblBlogTitlar;
     // End of variables declaration//GEN-END:variables
 }
