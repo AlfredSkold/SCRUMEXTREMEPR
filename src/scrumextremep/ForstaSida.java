@@ -5,6 +5,10 @@
  */
 package scrumextremep;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Axel D
@@ -16,6 +20,7 @@ public class ForstaSida extends javax.swing.JFrame {
      */
     public ForstaSida() {
         initComponents();
+        fetchBlognames();
     }
 
     /**
@@ -31,9 +36,10 @@ public class ForstaSida extends javax.swing.JFrame {
         tfAnvNamn = new javax.swing.JTextField();
         pfLosenord = new javax.swing.JPasswordField();
         btnLoggaIn = new javax.swing.JButton();
-        blog = new java.awt.List();
         spBlogFlow = new javax.swing.JScrollPane();
         taBlogFlow = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblBlog = new javax.swing.JTable();
         spCalender = new javax.swing.JScrollPane();
         taCalender = new javax.swing.JTextArea();
         lblBakgrundVit = new javax.swing.JLabel();
@@ -68,16 +74,44 @@ public class ForstaSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaIn);
-        btnLoggaIn.setBounds(860, 140, 75, 25);
-        getContentPane().add(blog);
-        blog.setBounds(770, 210, 150, 360);
+        btnLoggaIn.setBounds(840, 140, 93, 29);
 
         taBlogFlow.setColumns(20);
         taBlogFlow.setRows(5);
         spBlogFlow.setViewportView(taBlogFlow);
 
         getContentPane().add(spBlogFlow);
-        spBlogFlow.setBounds(260, 210, 510, 360);
+        spBlogFlow.setBounds(260, 210, 520, 360);
+
+        tblBlog.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Titel", "Användare"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblBlog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBlogMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblBlog);
+        if (tblBlog.getColumnModel().getColumnCount() > 0) {
+            tblBlog.getColumnModel().getColumn(0).setResizable(false);
+            tblBlog.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(780, 210, 220, 360);
 
         taCalender.setColumns(20);
         taCalender.setRows(5);
@@ -85,14 +119,14 @@ public class ForstaSida extends javax.swing.JFrame {
         spCalender.setViewportView(taCalender);
 
         getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 163, 150);
+        spCalender.setBounds(30, 210, 166, 150);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
         lblBakgrundVit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
         lblBakgrundVit.setText("jLabel1");
         getContentPane().add(lblBakgrundVit);
-        lblBakgrundVit.setBounds(0, 0, 1000, 700);
+        lblBakgrundVit.setBounds(0, 0, 1000, 630);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -107,45 +141,47 @@ public class ForstaSida extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void tblBlogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBlogMouseClicked
+        tblBlog.removeAll();
+        int a = tblBlog.getSelectedRow();
+        int b = tblBlog.getSelectedColumn();
+        String tableValue = (String) tblBlog.getModel().getValueAt(a, b);
+        
+        String sqlquery = "Select TEXT from BLOGGINLAGG where TITEL = '" + tableValue + "'";
+        String titel = new String();
+        
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ForstaSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ForstaSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ForstaSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ForstaSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            titel = Databas.getDatabas().fetchSingle(sqlquery);
+            
+            
+                taBlogFlow.setText(titel);
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_tblBlogMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ForstaSida().setVisible(true);
-            }
-        });
+    private void fetchBlognames() {
+        String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG";
+        ArrayList<HashMap<String, String>> blognames = new ArrayList<>();
+        try {
+         blognames = Databas.getDatabas().fetchRows(sqlquery);
+         
+         for(int i = 0; i < blognames.size(); i++) {
+             String names = blognames.get(i).get("TITEL");
+             
+             DefaultTableModel dmt = (DefaultTableModel)tblBlog.getModel();
+             
+             dmt.addRow(new Object[] {names});
+                 }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.List blog;
     private javax.swing.JButton btnLoggaIn;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBakgrundVit;
     private java.awt.Label lblRubrik;
     private javax.swing.JPasswordField pfLosenord;
@@ -153,6 +189,7 @@ public class ForstaSida extends javax.swing.JFrame {
     private javax.swing.JScrollPane spCalender;
     private javax.swing.JTextArea taBlogFlow;
     private javax.swing.JTextArea taCalender;
+    private javax.swing.JTable tblBlog;
     private javax.swing.JTextField tfAnvNamn;
     // End of variables declaration//GEN-END:variables
 }
