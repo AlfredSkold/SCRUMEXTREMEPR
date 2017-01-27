@@ -5,6 +5,8 @@
  */
 package scrumextremep;
 
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author Axel D
@@ -31,9 +33,10 @@ public class ForstaSida extends javax.swing.JFrame {
         tfAnvNamn = new javax.swing.JTextField();
         pfLosenord = new javax.swing.JPasswordField();
         btnLoggaIn = new javax.swing.JButton();
-        blog = new java.awt.List();
         spBlogFlow = new javax.swing.JScrollPane();
         taBlogFlow = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblBlog = new javax.swing.JTable();
         spCalender = new javax.swing.JScrollPane();
         taCalender = new javax.swing.JTextArea();
         lblBakgrundVit = new javax.swing.JLabel();
@@ -41,7 +44,7 @@ public class ForstaSida extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        lblRubrik.setAlignment(java.awt.Label.CENTER);
+        lblRubrik.setAlignment(1);
         lblRubrik.setBackground(new java.awt.Color(255, 255, 255));
         lblRubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
         lblRubrik.setText("Informatikblogg");
@@ -68,16 +71,44 @@ public class ForstaSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaIn);
-        btnLoggaIn.setBounds(860, 140, 75, 25);
-        getContentPane().add(blog);
-        blog.setBounds(770, 210, 150, 360);
+        btnLoggaIn.setBounds(840, 140, 73, 23);
 
         taBlogFlow.setColumns(20);
         taBlogFlow.setRows(5);
+        taBlogFlow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                taBlogFlowMouseClicked(evt);
+            }
+        });
         spBlogFlow.setViewportView(taBlogFlow);
 
         getContentPane().add(spBlogFlow);
         spBlogFlow.setBounds(260, 210, 510, 360);
+
+        tblBlog.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Titel", "Användare"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblBlog);
+        if (tblBlog.getColumnModel().getColumnCount() > 0) {
+            tblBlog.getColumnModel().getColumn(0).setResizable(false);
+            tblBlog.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(772, 210, 220, 360);
 
         taCalender.setColumns(20);
         taCalender.setRows(5);
@@ -85,14 +116,14 @@ public class ForstaSida extends javax.swing.JFrame {
         spCalender.setViewportView(taCalender);
 
         getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 163, 150);
+        spCalender.setBounds(30, 210, 166, 150);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
         lblBakgrundVit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
         lblBakgrundVit.setText("jLabel1");
         getContentPane().add(lblBakgrundVit);
-        lblBakgrundVit.setBounds(0, 0, 1000, 700);
+        lblBakgrundVit.setBounds(0, 0, 1000, 630);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -106,6 +137,10 @@ public class ForstaSida extends javax.swing.JFrame {
         ny.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoggaInActionPerformed
+
+    private void taBlogFlowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBlogFlowMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taBlogFlowMouseClicked
 
     /**
      * @param args the command line arguments
@@ -144,8 +179,8 @@ public class ForstaSida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.List blog;
     private javax.swing.JButton btnLoggaIn;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBakgrundVit;
     private java.awt.Label lblRubrik;
     private javax.swing.JPasswordField pfLosenord;
@@ -153,6 +188,7 @@ public class ForstaSida extends javax.swing.JFrame {
     private javax.swing.JScrollPane spCalender;
     private javax.swing.JTextArea taBlogFlow;
     private javax.swing.JTextArea taCalender;
+    private javax.swing.JTable tblBlog;
     private javax.swing.JTextField tfAnvNamn;
     // End of variables declaration//GEN-END:variables
 }
