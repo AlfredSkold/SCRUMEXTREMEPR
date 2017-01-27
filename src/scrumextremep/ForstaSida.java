@@ -49,7 +49,7 @@ public class ForstaSida extends javax.swing.JFrame {
         lblRubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
         lblRubrik.setText("Informatikblogg");
         getContentPane().add(lblRubrik);
-        lblRubrik.setBounds(240, 0, 480, 120);
+        lblRubrik.setBounds(260, 30, 480, 120);
 
         tfAnvNamn.setText("Användarnamn");
         tfAnvNamn.addActionListener(new java.awt.event.ActionListener() {
@@ -75,11 +75,6 @@ public class ForstaSida extends javax.swing.JFrame {
 
         taBlogFlow.setColumns(20);
         taBlogFlow.setRows(5);
-        taBlogFlow.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                taBlogFlowMouseClicked(evt);
-            }
-        });
         spBlogFlow.setViewportView(taBlogFlow);
 
         getContentPane().add(spBlogFlow);
@@ -138,10 +133,7 @@ public class ForstaSida extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
-    private void taBlogFlowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBlogFlowMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_taBlogFlowMouseClicked
-
+<<<<<<< HEAD
     /**
      * @param args the command line arguments
      */
@@ -169,14 +161,13 @@ public class ForstaSida extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+=======
+    private void tblBlogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBlogMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblBlogMouseClicked
+>>>>>>> origin/master
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ForstaSida().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaIn;
