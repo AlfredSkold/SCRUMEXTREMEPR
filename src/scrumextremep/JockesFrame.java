@@ -20,6 +20,7 @@ public class JockesFrame extends javax.swing.JFrame
      */
     public JockesFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         fyllBloggar();
         fyllAnvandare();
     }
@@ -41,12 +42,32 @@ public class JockesFrame extends javax.swing.JFrame
     public void fyllAnvandare()
     {
         try{
-        String fyll = "SELECT FORNAMN + ' ' + EFTERNAMN FROM BLOGG";
+        String fyll = "SELECT FORNAMN, EFTERNAMN FROM ANVANDARE";
         ArrayList<HashMap<String, String>> bloggarna = Databas.getDatabas().fetchRows(fyll);
-        for (int i = 0; i < bloggarna.size(); i++){
-            cb_anvandare.addItem(bloggarna.get(i).get("FORNAMN"));
-                                                  }
-           }
+        for (int i = 0; i < bloggarna.size(); i++)
+        {
+            String namn = bloggarna.get(i).get("FORNAMN") + " " + bloggarna.get(i).get("EFTERNAMN");
+            cb_anvandare.addItem(namn);
+        }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public void fyllSubkategori()
+    {
+        try{
+            String bloggnamn = cb_bloggar.getSelectedItem().toString();
+        String fyll = "SELECT NAMN FROM SUBKATEGORI WHERE B_ID = (SELECT B_ID FROM BLOGG WHERE BLOGGNAMN = '" + bloggnamn + "')";
+        ArrayList<HashMap<String, String>> bloggarna = Databas.getDatabas().fetchRows(fyll);
+        if(bloggarna != null){
+        for (int i = 0; i < bloggarna.size(); i++)
+        {
+            cb_subkategori.addItem(bloggarna.get(i).get("NAMN"));
+        }
+        }
+        }
         catch(Exception e){
             System.out.println(e);
         }
@@ -63,12 +84,28 @@ public class JockesFrame extends javax.swing.JFrame
 
         cb_bloggar = new javax.swing.JComboBox<>();
         cb_anvandare = new javax.swing.JComboBox<>();
+        cb_subkategori = new javax.swing.JComboBox<>();
+        btn_subkategori = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cb_bloggar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bloggkategorier" }));
+        cb_bloggar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_bloggarActionPerformed(evt);
+            }
+        });
 
         cb_anvandare.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Användare" }));
+
+        cb_subkategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Subkategorier" }));
+
+        btn_subkategori.setText("Hämta subkategori");
+        btn_subkategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_subkategoriActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,9 +114,13 @@ public class JockesFrame extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGap(153, 153, 153)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cb_subkategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_subkategori))
                     .addComponent(cb_anvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_bloggar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(718, Short.MAX_VALUE))
+                .addContainerGap(591, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,11 +129,29 @@ public class JockesFrame extends javax.swing.JFrame
                 .addComponent(cb_bloggar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cb_anvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_subkategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_subkategori))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_subkategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_subkategoriActionPerformed
+        fyllSubkategori();
+    }//GEN-LAST:event_btn_subkategoriActionPerformed
+
+    private void cb_bloggarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_bloggarActionPerformed
+        try{
+        cb_subkategori.removeAllItems();
+        fyllSubkategori();
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_cb_bloggarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,7 +189,9 @@ public class JockesFrame extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_subkategori;
     private javax.swing.JComboBox<String> cb_anvandare;
     private javax.swing.JComboBox<String> cb_bloggar;
+    private javax.swing.JComboBox<String> cb_subkategori;
     // End of variables declaration//GEN-END:variables
 }
