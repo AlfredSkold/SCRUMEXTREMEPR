@@ -1,5 +1,8 @@
 package scrumextremep;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,13 +13,43 @@ package scrumextremep;
  *
  * @author joaki
  */
-public class JockesFrame extends javax.swing.JFrame {
-
+public class JockesFrame extends javax.swing.JFrame 
+{
     /**
      * Creates new form JockesFrame
      */
     public JockesFrame() {
         initComponents();
+        fyllBloggar();
+        fyllAnvandare();
+    }
+    
+    public void fyllBloggar()
+    {
+        try{
+        String fyll = "SELECT BLOGGNAMN FROM BLOGG";
+        ArrayList<HashMap<String, String>> bloggarna = Databas.getDatabas().fetchRows(fyll);
+        for (int i = 0; i < bloggarna.size(); i++){
+            cb_bloggar.addItem(bloggarna.get(i).get("BLOGGNAMN"));
+                                                  }
+           }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public void fyllAnvandare()
+    {
+        try{
+        String fyll = "SELECT FORNAMN + ' ' + EFTERNAMN FROM BLOGG";
+        ArrayList<HashMap<String, String>> bloggarna = Databas.getDatabas().fetchRows(fyll);
+        for (int i = 0; i < bloggarna.size(); i++){
+            cb_anvandare.addItem(bloggarna.get(i).get("FORNAMN"));
+                                                  }
+           }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     /**
@@ -28,17 +61,34 @@ public class JockesFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cb_bloggar = new javax.swing.JComboBox<>();
+        cb_anvandare = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        cb_bloggar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bloggkategorier" }));
+
+        cb_anvandare.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Användare" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_anvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_bloggar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(718, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(208, 208, 208)
+                .addComponent(cb_bloggar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cb_anvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         pack();
@@ -80,5 +130,7 @@ public class JockesFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_anvandare;
+    private javax.swing.JComboBox<String> cb_bloggar;
     // End of variables declaration//GEN-END:variables
 }
