@@ -75,7 +75,7 @@ public class ForstaSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaIn);
-        btnLoggaIn.setBounds(840, 140, 93, 29);
+        btnLoggaIn.setBounds(840, 140, 78, 32);
 
         taBlogFlow.setColumns(20);
         taBlogFlow.setRows(5);
@@ -120,7 +120,7 @@ public class ForstaSida extends javax.swing.JFrame {
         spCalender.setViewportView(taCalender);
 
         getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 166, 150);
+        spCalender.setBounds(30, 210, 223, 150);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
