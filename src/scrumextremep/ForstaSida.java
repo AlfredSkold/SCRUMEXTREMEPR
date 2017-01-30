@@ -6,6 +6,9 @@
 package scrumextremep;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +21,7 @@ public class ForstaSida extends javax.swing.JFrame {
      */
     public ForstaSida() {
         initComponents();
+        fetchBlognames();
     }
 
     /**
@@ -71,7 +75,7 @@ public class ForstaSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaIn);
-        btnLoggaIn.setBounds(840, 140, 73, 23);
+        btnLoggaIn.setBounds(840, 140, 93, 29);
 
         taBlogFlow.setColumns(20);
         taBlogFlow.setRows(5);
@@ -94,6 +98,11 @@ public class ForstaSida extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblBlog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBlogMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblBlog);
@@ -133,6 +142,26 @@ public class ForstaSida extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
+    private void tblBlogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBlogMouseClicked
+        taBlogFlow.removeAll();
+        int a = tblBlog.getSelectedRow();
+        int b = tblBlog.getSelectedColumn();
+        String tableValue = (String) tblBlog.getModel().getValueAt(a, b);
+        
+        String sqlquery = "Select TEXT from BLOGGINLAGG where TITEL = '" + tableValue + "'";
+        String titel = new String();
+        
+        try {
+            titel = Databas.getDatabas().fetchSingle(sqlquery);
+            
+            
+                taBlogFlow.setText(titel);
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_tblBlogMouseClicked
+
 
     /**
      * @param args the command line arguments
@@ -161,6 +190,28 @@ public class ForstaSida extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+    }
+    
+    
+    private void fetchBlognames() {
+        String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG";
+        ArrayList<HashMap<String, String>> blognames = new ArrayList<>();
+        try {
+         blognames = Databas.getDatabas().fetchRows(sqlquery);
+         
+         for(int i = 0; i < blognames.size(); i++) {
+             String names = blognames.get(i).get("TITEL");
+             
+             DefaultTableModel dmt = (DefaultTableModel)tblBlog.getModel();
+             
+             dmt.addRow(new Object[] {names});
+                 }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+         
+ 
     }
     
 
