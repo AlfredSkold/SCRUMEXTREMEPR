@@ -18,7 +18,8 @@ public class JockesFrame extends javax.swing.JFrame
     /**
      * Creates new form JockesFrame
      */
-    public JockesFrame() {
+    public JockesFrame()
+    {
         initComponents();
         setLocationRelativeTo(null);
         fyllBloggar();
@@ -144,7 +145,8 @@ public class JockesFrame extends javax.swing.JFrame
     }//GEN-LAST:event_btn_subkategoriActionPerformed
 
     private void cb_bloggarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_bloggarActionPerformed
-        try{
+        try
+        {
         cb_subkategori.removeAllItems();
         fyllSubkategori();
         }
@@ -156,7 +158,8 @@ public class JockesFrame extends javax.swing.JFrame
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) 
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
