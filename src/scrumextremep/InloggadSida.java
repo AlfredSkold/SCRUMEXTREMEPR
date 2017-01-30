@@ -94,7 +94,7 @@ public class InloggadSida extends javax.swing.JFrame {
         spCalender.setViewportView(taCalender);
 
         getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 223, 150);
+        spCalender.setBounds(30, 210, 163, 150);
 
         spForskning.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -130,7 +130,7 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaUt);
-        btnLoggaUt.setBounds(20, 20, 90, 32);
+        btnLoggaUt.setBounds(20, 20, 90, 25);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
