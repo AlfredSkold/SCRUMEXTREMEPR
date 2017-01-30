@@ -21,7 +21,7 @@ public class ForstaSida extends javax.swing.JFrame {
      */
     public ForstaSida() {
         initComponents();
-        fetchBlognames();
+        fetchBlognamesInformell();
     }
 
     /**
@@ -39,13 +39,18 @@ public class ForstaSida extends javax.swing.JFrame {
         btnLoggaIn = new javax.swing.JButton();
         spBlogFlow = new javax.swing.JScrollPane();
         taBlogFlow = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblBlog = new javax.swing.JTable();
+        spBlogTitlar = new javax.swing.JScrollPane();
+        tblBlogTitlar = new javax.swing.JTable();
         spCalender = new javax.swing.JScrollPane();
         taCalender = new javax.swing.JTextArea();
         lblBakgrundVit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         lblRubrik.setAlignment(java.awt.Label.CENTER);
@@ -56,15 +61,21 @@ public class ForstaSida extends javax.swing.JFrame {
         lblRubrik.setBounds(240, 0, 480, 120);
 
         tfAnvNamn.setText("Användarnamn");
-        tfAnvNamn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfAnvNamnActionPerformed(evt);
+        tfAnvNamn.setRequestFocusEnabled(false);
+        tfAnvNamn.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfAnvNamnFocusGained(evt);
             }
         });
         getContentPane().add(tfAnvNamn);
         tfAnvNamn.setBounds(770, 50, 160, 30);
 
         pfLosenord.setText("jPasswordField1");
+        pfLosenord.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pfLosenordFocusGained(evt);
+            }
+        });
         getContentPane().add(pfLosenord);
         pfLosenord.setBounds(770, 100, 160, 30);
 
@@ -75,7 +86,7 @@ public class ForstaSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaIn);
-        btnLoggaIn.setBounds(840, 140, 93, 29);
+        btnLoggaIn.setBounds(840, 140, 78, 32);
 
         taBlogFlow.setColumns(20);
         taBlogFlow.setRows(5);
@@ -84,26 +95,34 @@ public class ForstaSida extends javax.swing.JFrame {
         getContentPane().add(spBlogFlow);
         spBlogFlow.setBounds(260, 210, 510, 360);
 
-        tblBlog.setModel(new javax.swing.table.DefaultTableModel(
+        tblBlogTitlar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "Titel"
             }
-        ));
-        tblBlog.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblBlogMouseClicked(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblBlog);
-        if (tblBlog.getColumnModel().getColumnCount() > 0) {
-            tblBlog.getColumnModel().getColumn(0).setResizable(false);
+        tblBlogTitlar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBlogTitlarMouseClicked(evt);
+            }
+        });
+        spBlogTitlar.setViewportView(tblBlogTitlar);
+        if (tblBlogTitlar.getColumnModel().getColumnCount() > 0) {
+            tblBlogTitlar.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(772, 212, 210, 360);
+        getContentPane().add(spBlogTitlar);
+        spBlogTitlar.setBounds(772, 212, 210, 360);
 
         taCalender.setColumns(20);
         taCalender.setRows(5);
@@ -111,7 +130,7 @@ public class ForstaSida extends javax.swing.JFrame {
         spCalender.setViewportView(taCalender);
 
         getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 166, 150);
+        spCalender.setBounds(30, 210, 223, 150);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
@@ -123,21 +142,16 @@ public class ForstaSida extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfAnvNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAnvNamnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAnvNamnActionPerformed
-
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
-        InloggadSida ny = new InloggadSida();
-        ny.setVisible(true);
+        new InloggadSida().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
-    private void tblBlogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBlogMouseClicked
+    private void tblBlogTitlarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBlogTitlarMouseClicked
         taBlogFlow.removeAll();
-        int a = tblBlog.getSelectedRow();
-        int b = tblBlog.getSelectedColumn();
-        String tableValue = (String) tblBlog.getModel().getValueAt(a, b);
+        int a = tblBlogTitlar.getSelectedRow();
+        int b = tblBlogTitlar.getSelectedColumn();
+        String tableValue = (String) tblBlogTitlar.getModel().getValueAt(a, b);
         
         String sqlquery = "Select TEXT from BLOGGINLAGG where TITEL = '" + tableValue + "'";
         String titel = new String();
@@ -151,7 +165,19 @@ public class ForstaSida extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }//GEN-LAST:event_tblBlogMouseClicked
+    }//GEN-LAST:event_tblBlogTitlarMouseClicked
+
+    private void tfAnvNamnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfAnvNamnFocusGained
+        tfAnvNamn.setText("");
+    }//GEN-LAST:event_tfAnvNamnFocusGained
+
+    private void pfLosenordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfLosenordFocusGained
+        pfLosenord.setText("");
+    }//GEN-LAST:event_pfLosenordFocusGained
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        setExtendedState(ForstaSida.MAXIMIZED_BOTH);
+    }//GEN-LAST:event_formWindowOpened
 
 
     /**
@@ -184,8 +210,8 @@ public class ForstaSida extends javax.swing.JFrame {
     }
     
     
-    private void fetchBlognames() {
-        String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG";
+    private void fetchBlognamesInformell() {
+        String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = 3";
         ArrayList<HashMap<String, String>> blognames = new ArrayList<>();
         try {
          blognames = Databas.getDatabas().fetchRows(sqlquery);
@@ -193,7 +219,7 @@ public class ForstaSida extends javax.swing.JFrame {
          for(int i = 0; i < blognames.size(); i++) {
              String names = blognames.get(i).get("TITEL");
              
-             DefaultTableModel dmt = (DefaultTableModel)tblBlog.getModel();
+             DefaultTableModel dmt = (DefaultTableModel)tblBlogTitlar.getModel();
              
              dmt.addRow(new Object[] {names});
                  }
@@ -208,15 +234,15 @@ public class ForstaSida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaIn;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBakgrundVit;
     private java.awt.Label lblRubrik;
     private javax.swing.JPasswordField pfLosenord;
     private javax.swing.JScrollPane spBlogFlow;
+    private javax.swing.JScrollPane spBlogTitlar;
     private javax.swing.JScrollPane spCalender;
     private javax.swing.JTextArea taBlogFlow;
     private javax.swing.JTextArea taCalender;
-    private javax.swing.JTable tblBlog;
+    private javax.swing.JTable tblBlogTitlar;
     private javax.swing.JTextField tfAnvNamn;
     // End of variables declaration//GEN-END:variables
 }

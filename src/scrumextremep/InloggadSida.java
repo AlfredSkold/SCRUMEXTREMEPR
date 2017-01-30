@@ -42,11 +42,17 @@ public class InloggadSida extends javax.swing.JFrame {
         taForskning = new javax.swing.JTextArea();
         spUtbildning = new javax.swing.JScrollPane();
         taUtbildning = new javax.swing.JTextArea();
+        btnLoggaUt = new javax.swing.JButton();
         lblBakgrundVit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(2147483647, 2147483647));
         setPreferredSize(new java.awt.Dimension(1000, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         lblRubrik.setAlignment(java.awt.Label.CENTER);
@@ -63,7 +69,20 @@ public class InloggadSida extends javax.swing.JFrame {
             new String [] {
                 "Titel"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblBlogTitlar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBlogTitlarMouseClicked(evt);
+            }
+        });
         spBlogtitlar.setViewportView(tblBlogTitlar);
 
         getContentPane().add(spBlogtitlar);
@@ -104,6 +123,15 @@ public class InloggadSida extends javax.swing.JFrame {
         getContentPane().add(tpBloggar);
         tpBloggar.setBounds(270, 190, 490, 440);
 
+        btnLoggaUt.setText("Logga ut");
+        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoggaUtActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLoggaUt);
+        btnLoggaUt.setBounds(20, 20, 90, 32);
+
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
         lblBakgrundVit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
@@ -121,6 +149,36 @@ public class InloggadSida extends javax.swing.JFrame {
     private void spUtbildningComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_spUtbildningComponentShown
         fetchBlognamesUtbildning();
     }//GEN-LAST:event_spUtbildningComponentShown
+
+    private void tblBlogTitlarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBlogTitlarMouseClicked
+        taForskning.removeAll();
+        taUtbildning.removeAll();
+        int a = tblBlogTitlar.getSelectedRow();
+        int b = tblBlogTitlar.getSelectedColumn();
+        String tableValue = (String) tblBlogTitlar.getModel().getValueAt(a, b);
+        
+        String sqlquery = "Select TEXT from BLOGGINLAGG where TITEL = '" + tableValue + "'";
+        String titel = new String();
+        
+        try {
+            titel = Databas.getDatabas().fetchSingle(sqlquery);
+                       
+            taForskning.setText(titel);
+            taUtbildning.setText(titel);
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_tblBlogTitlarMouseClicked
+
+    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
+        new ForstaSida().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnLoggaUtActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        setExtendedState(InloggadSida.MAXIMIZED_BOTH);
+    }//GEN-LAST:event_formWindowOpened
 
     private void fetchBlognamesUtbildning() {
         String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = 2";
@@ -161,6 +219,7 @@ public class InloggadSida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLoggaUt;
     private javax.swing.JLabel lblBakgrundVit;
     private java.awt.Label lblRubrik;
     private javax.swing.JScrollPane spBlogtitlar;
