@@ -15,12 +15,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InloggadSida extends javax.swing.JFrame {
 
+    private String anvID;
     /**
      * Creates new form InloggadSida
      */
-    public InloggadSida() {
+    public InloggadSida(String anvandarID) {
         initComponents();
         fetchBlognamesForskning();
+        anvID = anvandarID;
     }
 
     /**
@@ -94,7 +96,7 @@ public class InloggadSida extends javax.swing.JFrame {
         spCalender.setViewportView(taCalender);
 
         getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 163, 150);
+        spCalender.setBounds(30, 210, 223, 150);
 
         spForskning.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -130,7 +132,7 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaUt);
-        btnLoggaUt.setBounds(20, 20, 90, 25);
+        btnLoggaUt.setBounds(20, 20, 90, 32);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
@@ -216,6 +218,11 @@ public class InloggadSida extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    public String id(String anvID) {
+        String dettaID = anvID;
+        return dettaID;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
