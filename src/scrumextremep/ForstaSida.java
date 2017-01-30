@@ -44,12 +44,12 @@ public class ForstaSida extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        lblRubrik.setAlignment(1);
+        lblRubrik.setAlignment(java.awt.Label.CENTER);
         lblRubrik.setBackground(new java.awt.Color(255, 255, 255));
         lblRubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
         lblRubrik.setText("Informatikblogg");
         getContentPane().add(lblRubrik);
-        lblRubrik.setBounds(260, 30, 480, 120);
+        lblRubrik.setBounds(240, 0, 480, 120);
 
         tfAnvNamn.setText("Användarnamn");
         tfAnvNamn.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +89,7 @@ public class ForstaSida extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -103,7 +103,7 @@ public class ForstaSida extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(772, 210, 220, 360);
+        jScrollPane1.setBounds(772, 212, 210, 360);
 
         taCalender.setColumns(20);
         taCalender.setRows(5);
@@ -133,7 +133,7 @@ public class ForstaSida extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
-<<<<<<< HEAD
+
     /**
      * @param args the command line arguments
      */
@@ -161,12 +161,7 @@ public class ForstaSida extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-=======
-    private void tblBlogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBlogMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblBlogMouseClicked
->>>>>>> origin/master
-
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
