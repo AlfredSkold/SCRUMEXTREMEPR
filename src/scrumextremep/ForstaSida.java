@@ -16,11 +16,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ForstaSida extends javax.swing.JFrame {
 
+    private String anvID;
     /**
      * Creates new form Startsida
      */
     public ForstaSida() {
         initComponents();
+        anvandarID();
         fetchBlognamesInformell();
     }
 
@@ -143,10 +145,21 @@ public class ForstaSida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
-        new InloggadSida().setVisible(true);
+        new InloggadSida(anvID).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
+    private void anvandarID() {
+        String anvNamn = tfAnvNamn.getText();
+        String sqlFragaHamtaId = "select a_id from anvandare where anvnamn =  '" + anvNamn + "'";
+        try
+        {
+            anvID = Databas.getDatabas().fetchSingle(sqlFragaHamtaId);
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     private void tblBlogTitlarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBlogTitlarMouseClicked
         taBlogFlow.removeAll();
         int a = tblBlogTitlar.getSelectedRow();
