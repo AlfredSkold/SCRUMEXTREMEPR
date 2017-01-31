@@ -38,23 +38,19 @@ public class InloggadSida extends javax.swing.JFrame {
         spBlogtitlar = new javax.swing.JScrollPane();
         tblBlogTitlar = new javax.swing.JTable();
         tpBloggar = new javax.swing.JTabbedPane();
-        spForskning = new javax.swing.JScrollPane();
-        taForskning = new javax.swing.JTextArea();
-        spUtbildning = new javax.swing.JScrollPane();
-        taUtbildning = new javax.swing.JTextArea();
         spInformell = new javax.swing.JScrollPane();
         taInformell = new javax.swing.JTextArea();
+        spUtbildning = new javax.swing.JScrollPane();
+        taUtbildning = new javax.swing.JTextArea();
         btnLoggaUt = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         lblBakgrundVit = new javax.swing.JLabel();
+        spForskning = new javax.swing.JScrollPane();
+        taForskning = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(2147483647, 2147483647));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+        setMaximumSize(new java.awt.Dimension(790, 623));
+        setMinimumSize(new java.awt.Dimension(790, 623));
         getContentPane().setLayout(null);
 
         lblRubrik.setAlignment(java.awt.Label.CENTER);
@@ -62,7 +58,7 @@ public class InloggadSida extends javax.swing.JFrame {
         lblRubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
         lblRubrik.setText("Informatikblogg");
         getContentPane().add(lblRubrik);
-        lblRubrik.setBounds(270, 10, 480, 120);
+        lblRubrik.setBounds(120, 10, 480, 120);
 
         tblBlogTitlar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,33 +84,7 @@ public class InloggadSida extends javax.swing.JFrame {
         spBlogtitlar.setViewportView(tblBlogTitlar);
 
         getContentPane().add(spBlogtitlar);
-        spBlogtitlar.setBounds(772, 212, 210, 360);
-
-        spForskning.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                spForskningComponentShown(evt);
-            }
-        });
-
-        taForskning.setEditable(false);
-        taForskning.setColumns(20);
-        taForskning.setRows(5);
-        spForskning.setViewportView(taForskning);
-
-        tpBloggar.addTab("Forskning", spForskning);
-
-        spUtbildning.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                spUtbildningComponentShown(evt);
-            }
-        });
-
-        taUtbildning.setEditable(false);
-        taUtbildning.setColumns(20);
-        taUtbildning.setRows(5);
-        spUtbildning.setViewportView(taUtbildning);
-
-        tpBloggar.addTab("Utbildning", spUtbildning);
+        spBlogtitlar.setBounds(530, 210, 210, 360);
 
         spInformell.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -129,8 +99,21 @@ public class InloggadSida extends javax.swing.JFrame {
 
         tpBloggar.addTab("Informell", spInformell);
 
+        spUtbildning.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                spUtbildningComponentShown(evt);
+            }
+        });
+
+        taUtbildning.setEditable(false);
+        taUtbildning.setColumns(20);
+        taUtbildning.setRows(5);
+        spUtbildning.setViewportView(taUtbildning);
+
+        tpBloggar.addTab("Utbildning", spUtbildning);
+
         getContentPane().add(tpBloggar);
-        tpBloggar.setBounds(270, 190, 490, 440);
+        tpBloggar.setBounds(20, 190, 490, 440);
 
         btnLoggaUt.setText("Logga ut");
         btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +122,7 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaUt);
-        btnLoggaUt.setBounds(20, 20, 90, 32);
+        btnLoggaUt.setBounds(20, 10, 90, 32);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/calendarMini.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -148,16 +131,31 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(880, 10, 100, 120);
+        jButton1.setBounds(640, 10, 100, 120);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
         lblBakgrundVit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
         lblBakgrundVit.setText("jLabel1");
         getContentPane().add(lblBakgrundVit);
-        lblBakgrundVit.setBounds(0, 0, 1000, 630);
+        lblBakgrundVit.setBounds(0, 0, 750, 630);
+
+        spForskning.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                spForskningComponentShown(evt);
+            }
+        });
+
+        taForskning.setEditable(false);
+        taForskning.setColumns(20);
+        taForskning.setRows(5);
+        spForskning.setViewportView(taForskning);
+
+        getContentPane().add(spForskning);
+        spForskning.setBounds(20, 210, 488, 414);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void spForskningComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_spForskningComponentShown
@@ -198,10 +196,6 @@ public class InloggadSida extends javax.swing.JFrame {
         new ForstaSida().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoggaUtActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        setExtendedState(InloggadSida.MAXIMIZED_BOTH);
-    }//GEN-LAST:event_formWindowOpened
 
     private void spInformellComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_spInformellComponentShown
         fetchBlognamesInformell();
