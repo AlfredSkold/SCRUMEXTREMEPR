@@ -37,19 +37,17 @@ public class InloggadSida extends javax.swing.JFrame {
         lblRubrik = new java.awt.Label();
         spBlogtitlar = new javax.swing.JScrollPane();
         tblBlogTitlar = new javax.swing.JTable();
-        spCalender = new javax.swing.JScrollPane();
-        taCalender = new javax.swing.JTextArea();
         tpBloggar = new javax.swing.JTabbedPane();
         spForskning = new javax.swing.JScrollPane();
         taForskning = new javax.swing.JTextArea();
         spUtbildning = new javax.swing.JScrollPane();
         taUtbildning = new javax.swing.JTextArea();
         btnLoggaUt = new javax.swing.JButton();
+        calerndarButton = new javax.swing.JButton();
         lblBakgrundVit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(2147483647, 2147483647));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -90,14 +88,6 @@ public class InloggadSida extends javax.swing.JFrame {
         getContentPane().add(spBlogtitlar);
         spBlogtitlar.setBounds(772, 212, 210, 360);
 
-        taCalender.setColumns(20);
-        taCalender.setRows(5);
-        taCalender.setText("Här ska kalendern \nligga");
-        spCalender.setViewportView(taCalender);
-
-        getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 223, 150);
-
         spForskning.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 spForskningComponentShown(evt);
@@ -132,7 +122,16 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaUt);
-        btnLoggaUt.setBounds(20, 20, 90, 32);
+        btnLoggaUt.setBounds(20, 20, 90, 23);
+
+        calerndarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/calendarIcon.png"))); // NOI18N
+        calerndarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calerndarButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(calerndarButton);
+        calerndarButton.setBounds(0, 170, 240, 210);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,6 +181,12 @@ public class InloggadSida extends javax.swing.JFrame {
         setExtendedState(InloggadSida.MAXIMIZED_BOTH);
     }//GEN-LAST:event_formWindowOpened
 
+    private void calerndarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calerndarButtonActionPerformed
+        Calendar ny = new Calendar();
+        ny.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_calerndarButtonActionPerformed
+
     private void fetchBlognamesUtbildning() {
         String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = 2";
         ArrayList<HashMap<String, String>> blognames = new ArrayList<>();
@@ -227,13 +232,12 @@ public class InloggadSida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaUt;
+    private javax.swing.JButton calerndarButton;
     private javax.swing.JLabel lblBakgrundVit;
     private java.awt.Label lblRubrik;
     private javax.swing.JScrollPane spBlogtitlar;
-    private javax.swing.JScrollPane spCalender;
     private javax.swing.JScrollPane spForskning;
     private javax.swing.JScrollPane spUtbildning;
-    private javax.swing.JTextArea taCalender;
     private javax.swing.JTextArea taForskning;
     private javax.swing.JTextArea taUtbildning;
     private javax.swing.JTable tblBlogTitlar;
