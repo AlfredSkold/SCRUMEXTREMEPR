@@ -45,6 +45,7 @@ public class InloggadSida extends javax.swing.JFrame {
         spUtbildning = new javax.swing.JScrollPane();
         taUtbildning = new javax.swing.JTextArea();
         btnLoggaUt = new javax.swing.JButton();
+        btn_skapaInlagg = new javax.swing.JButton();
         lblBakgrundVit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,7 +97,7 @@ public class InloggadSida extends javax.swing.JFrame {
         spCalender.setViewportView(taCalender);
 
         getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 223, 150);
+        spCalender.setBounds(30, 210, 163, 150);
 
         spForskning.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -132,7 +133,16 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaUt);
-        btnLoggaUt.setBounds(20, 20, 90, 32);
+        btnLoggaUt.setBounds(20, 20, 90, 25);
+
+        btn_skapaInlagg.setText("Skapa blogginlägg");
+        btn_skapaInlagg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_skapaInlaggActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_skapaInlagg);
+        btn_skapaInlagg.setBounds(770, 580, 140, 25);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,6 +192,11 @@ public class InloggadSida extends javax.swing.JFrame {
         setExtendedState(InloggadSida.MAXIMIZED_BOTH);
     }//GEN-LAST:event_formWindowOpened
 
+    private void btn_skapaInlaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_skapaInlaggActionPerformed
+        new CreateBlogg(anvID).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_skapaInlaggActionPerformed
+
     private void fetchBlognamesUtbildning() {
         String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = 2";
         ArrayList<HashMap<String, String>> blognames = new ArrayList<>();
@@ -227,6 +242,7 @@ public class InloggadSida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaUt;
+    private javax.swing.JButton btn_skapaInlagg;
     private javax.swing.JLabel lblBakgrundVit;
     private java.awt.Label lblRubrik;
     private javax.swing.JScrollPane spBlogtitlar;

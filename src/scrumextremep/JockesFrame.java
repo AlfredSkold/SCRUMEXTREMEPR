@@ -2,6 +2,7 @@ package scrumextremep;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,6 +25,7 @@ public class JockesFrame extends javax.swing.JFrame
         setLocationRelativeTo(null);
         fyllBloggar();
         fyllAnvandare();
+        fyllAnvandarnamn();
     }
     
     public void fyllBloggar()
@@ -33,6 +35,20 @@ public class JockesFrame extends javax.swing.JFrame
         ArrayList<HashMap<String, String>> bloggarna = Databas.getDatabas().fetchRows(fyll);
         for (int i = 0; i < bloggarna.size(); i++){
             cb_bloggar.addItem(bloggarna.get(i).get("BLOGGNAMN"));
+                                                  }
+           }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public void fyllAnvandarnamn()
+    {
+        try{
+        String fyll = "SELECT ANVNAMN FROM ANVANDARE";
+        ArrayList<HashMap<String, String>> bloggarna = Databas.getDatabas().fetchRows(fyll);
+        for (int i = 0; i < bloggarna.size(); i++){
+            cb_anvandarnamn.addItem(bloggarna.get(i).get("ANVNAMN"));
                                                   }
            }
         catch(Exception e){
@@ -73,6 +89,25 @@ public class JockesFrame extends javax.swing.JFrame
             System.out.println(e);
         }
     }
+    
+    public void skapaInlagg(String text, String titel, String bloggid, String subkategori, String inloggad){
+        try{
+            titel = txt_bloggTitel.getText();
+            text = txt_bloggText.getText();
+            String bloggNamn = cb_bloggar.getSelectedItem().toString();
+            bloggid = "SELECT B_ID FROM BLOGGNAMN WHERE BLOGGNAMN = '" + bloggNamn + "'";
+            String subkategoriNamn = cb_subkategori.getSelectedItem().toString();
+            subkategori = "SELECT SK_ID FROM SUBKATEGORI WHERE NAMN = '" + subkategoriNamn + "'";
+        String increment = Databas.getDatabas().getAutoIncrement("BLOGGINLAGG","B_ID");
+        String sql = "INSERT INTO BLOGGINLAGG VALUES('" + increment + "' , '" + titel + "' , '" + text + "' , " + inloggad + " , " + subkategori + " , " + bloggid + ")";
+        Databas.getDatabas().insert(sql);
+        JOptionPane.showMessageDialog(null, titel + " har nu lagts in!");
+           }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +122,11 @@ public class JockesFrame extends javax.swing.JFrame
         cb_anvandare = new javax.swing.JComboBox<>();
         cb_subkategori = new javax.swing.JComboBox<>();
         btn_subkategori = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txt_bloggText = new javax.swing.JTextArea();
+        txt_bloggTitel = new javax.swing.JTextField();
+        btn_skapaInlagg = new javax.swing.JButton();
+        cb_anvandarnamn = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,33 +148,66 @@ public class JockesFrame extends javax.swing.JFrame
             }
         });
 
+        txt_bloggText.setColumns(20);
+        txt_bloggText.setRows(5);
+        jScrollPane1.setViewportView(txt_bloggText);
+
+        btn_skapaInlagg.setText("Skapa inlägg");
+        btn_skapaInlagg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_skapaInlaggActionPerformed(evt);
+            }
+        });
+
+        cb_anvandarnamn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Användarnamn" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(153, 153, 153)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cb_subkategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_subkategori))
-                    .addComponent(cb_anvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb_bloggar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(591, Short.MAX_VALUE))
+                        .addGap(154, 154, 154)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cb_bloggar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_skapaInlagg))
+                                .addGap(154, 154, 154)
+                                .addComponent(btn_subkategori))
+                            .addComponent(txt_bloggTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_anvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_subkategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(441, 441, 441)
+                        .addComponent(cb_anvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(306, 440, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addComponent(cb_bloggar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cb_anvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160)
+                .addComponent(txt_bloggTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cb_subkategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_subkategori))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(cb_anvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(btn_subkategori))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cb_anvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cb_subkategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cb_bloggar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_skapaInlagg)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,6 +227,31 @@ public class JockesFrame extends javax.swing.JFrame
             System.out.println(e);
         }
     }//GEN-LAST:event_cb_bloggarActionPerformed
+
+    private void btn_skapaInlaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_skapaInlaggActionPerformed
+        try
+        {
+            String inloggadsnamn = cb_anvandarnamn.getSelectedItem().toString();
+            String inloggad = "SELECT A_ID FROM ANVANDARE WHERE ANVNAMN = '" + inloggadsnamn + "'";
+            inloggad = Databas.getDatabas().fetchSingle(inloggad);
+            String titel = txt_bloggTitel.getText();
+            String text = txt_bloggText.getText();
+            String bloggNamn = cb_bloggar.getSelectedItem().toString();
+            String bloggid = "SELECT B_ID FROM BLOGG WHERE BLOGGNAMN = '" + bloggNamn + "'";
+            bloggid = Databas.getDatabas().fetchSingle(bloggid);
+            String subkategoriNamn = cb_subkategori.getSelectedItem().toString();
+            String  subkategori = "SELECT SK_ID FROM SUBKATEGORI WHERE NAMN = '" + subkategoriNamn + "'";
+            subkategori = Databas.getDatabas().fetchSingle(subkategori);
+        String increment = Databas.getDatabas().getAutoIncrement("BLOGGINLAGG","B_ID");
+        String sql = "INSERT INTO BLOGGINLAGG VALUES('" + increment + "' , '" + titel + "' , '" + text + "' , '" + "Hej" + "' , " + inloggad + " , " + subkategori + " , " + bloggid + ")";
+        Databas.getDatabas().insert(sql);
+        JOptionPane.showMessageDialog(null, titel + " har nu lagts in!");
+         }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btn_skapaInlaggActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,9 +290,14 @@ public class JockesFrame extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_skapaInlagg;
     private javax.swing.JButton btn_subkategori;
     private javax.swing.JComboBox<String> cb_anvandare;
+    private javax.swing.JComboBox<String> cb_anvandarnamn;
     private javax.swing.JComboBox<String> cb_bloggar;
     private javax.swing.JComboBox<String> cb_subkategori;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txt_bloggText;
+    private javax.swing.JTextField txt_bloggTitel;
     // End of variables declaration//GEN-END:variables
 }
