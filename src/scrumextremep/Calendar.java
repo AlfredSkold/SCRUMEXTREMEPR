@@ -33,7 +33,7 @@ public class Calendar extends javax.swing.JFrame {
         table2 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         table1 = new javax.swing.JTable();
-        dateChoser = new com.toedter.calendar.JDateChooser();
+        dateChooser = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -94,6 +94,8 @@ public class Calendar extends javax.swing.JFrame {
             table1.getColumnModel().getColumn(2).setResizable(false);
         }
 
+        dateChooser.setDateFormatString("yyyy-MM-dd");
+
         jLabel1.setText("Meeting");
 
         jButton2.setText("Edit meeting");
@@ -133,7 +135,7 @@ public class Calendar extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(dateChoser, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(dateBtn)
                 .addGap(28, 28, 28)
@@ -149,7 +151,7 @@ public class Calendar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(dateChoser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(dateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,14 +174,14 @@ public class Calendar extends javax.swing.JFrame {
          
       
          try {
-            Date date = dateChoser.getCalendar().getTime();
+            Date date = dateChooser.getCalendar().getTime();
            
            String sql = "SELECT MOTE.NAMN, MOTE.DATUM, MOTE.STARTTID \n" +
                    "from MOTE where DATUM = '"+date+"'";
                      
            Database = Databas.getDatabas().fetchRows(sql);
            
-                       for(int i = 0; i < Database.size(); i++) {
+                for(int i = 0; i < Database.size(); i++) {
                 String name = Database.get(i).get("NAMN");
                 String time = Database.get(i).get("STARTTID");
                 String Date = Database.get(i).get("DATUM");
@@ -245,7 +247,7 @@ public class Calendar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JButton dateBtn;
-    private com.toedter.calendar.JDateChooser dateChoser;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
