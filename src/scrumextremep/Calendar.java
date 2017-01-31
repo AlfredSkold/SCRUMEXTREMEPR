@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Calendar extends javax.swing.JFrame {
 
+    private String anvID;
     /**
      * Creates new form CalendarReal
      */
@@ -205,8 +206,7 @@ public class Calendar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        ForstaSida ny = new ForstaSida();
-        ny.setVisible(true);
+        new InloggadSida(anvID).setVisible(true);
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
