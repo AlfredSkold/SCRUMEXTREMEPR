@@ -37,25 +37,20 @@ public class InloggadSida extends javax.swing.JFrame {
         lblRubrik = new java.awt.Label();
         spBlogtitlar = new javax.swing.JScrollPane();
         tblBlogTitlar = new javax.swing.JTable();
-        spCalender = new javax.swing.JScrollPane();
-        taCalender = new javax.swing.JTextArea();
         tpBloggar = new javax.swing.JTabbedPane();
         spForskning = new javax.swing.JScrollPane();
         taForskning = new javax.swing.JTextArea();
         spUtbildning = new javax.swing.JScrollPane();
         taUtbildning = new javax.swing.JTextArea();
+        spInformell = new javax.swing.JScrollPane();
+        taInformell = new javax.swing.JTextArea();
         btnLoggaUt = new javax.swing.JButton();
-        btn_skapaInlagg = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         lblBakgrundVit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(2147483647, 2147483647));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+        setMaximumSize(new java.awt.Dimension(790, 623));
+        setMinimumSize(new java.awt.Dimension(790, 623));
         getContentPane().setLayout(null);
 
         lblRubrik.setAlignment(java.awt.Label.CENTER);
@@ -63,7 +58,7 @@ public class InloggadSida extends javax.swing.JFrame {
         lblRubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
         lblRubrik.setText("Informatikblogg");
         getContentPane().add(lblRubrik);
-        lblRubrik.setBounds(270, 10, 480, 120);
+        lblRubrik.setBounds(120, 10, 480, 120);
 
         tblBlogTitlar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +100,7 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
 
+        taForskning.setEditable(false);
         taForskning.setColumns(20);
         taForskning.setRows(5);
         spForskning.setViewportView(taForskning);
@@ -117,14 +113,28 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
 
+        taUtbildning.setEditable(false);
         taUtbildning.setColumns(20);
         taUtbildning.setRows(5);
         spUtbildning.setViewportView(taUtbildning);
 
         tpBloggar.addTab("Utbildning", spUtbildning);
 
+        spInformell.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                spInformellComponentShown(evt);
+            }
+        });
+
+        taInformell.setEditable(false);
+        taInformell.setColumns(20);
+        taInformell.setRows(5);
+        spInformell.setViewportView(taInformell);
+
+        tpBloggar.addTab("Informell", spInformell);
+
         getContentPane().add(tpBloggar);
-        tpBloggar.setBounds(270, 190, 490, 440);
+        tpBloggar.setBounds(20, 190, 490, 440);
 
         btnLoggaUt.setText("Logga ut");
         btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
@@ -133,25 +143,26 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaUt);
-        btnLoggaUt.setBounds(20, 20, 90, 25);
+        btnLoggaUt.setBounds(20, 10, 90, 32);
 
-        btn_skapaInlagg.setText("Skapa blogginlägg");
-        btn_skapaInlagg.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/calendarMini.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_skapaInlaggActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_skapaInlagg);
-        btn_skapaInlagg.setBounds(770, 580, 140, 25);
+        getContentPane().add(jButton1);
+        jButton1.setBounds(640, 10, 100, 120);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
         lblBakgrundVit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
         lblBakgrundVit.setText("jLabel1");
         getContentPane().add(lblBakgrundVit);
-        lblBakgrundVit.setBounds(0, 0, 1000, 630);
+        lblBakgrundVit.setBounds(0, 0, 750, 630);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void spForskningComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_spForskningComponentShown
@@ -165,6 +176,7 @@ public class InloggadSida extends javax.swing.JFrame {
     private void tblBlogTitlarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBlogTitlarMouseClicked
         taForskning.removeAll();
         taUtbildning.removeAll();
+        taInformell.removeAll();
         int a = tblBlogTitlar.getSelectedRow();
         int b = tblBlogTitlar.getSelectedColumn();
         String tableValue = (String) tblBlogTitlar.getModel().getValueAt(a, b);
@@ -174,9 +186,13 @@ public class InloggadSida extends javax.swing.JFrame {
         
         try {
             titel = Databas.getDatabas().fetchSingle(sqlquery);
-                       
-            taForskning.setText(titel);
-            taUtbildning.setText(titel);
+            if(tpBloggar.getSelectedIndex() == 0) {
+                taForskning.setText(titel);
+            } else if(tpBloggar.getSelectedIndex() == 1) {
+                taUtbildning.setText(titel);
+            } else if(tpBloggar.getSelectedIndex() == 2) {
+                taInformell.setText(titel);
+            }
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -188,16 +204,21 @@ public class InloggadSida extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        setExtendedState(InloggadSida.MAXIMIZED_BOTH);
-    }//GEN-LAST:event_formWindowOpened
+    private void spInformellComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_spInformellComponentShown
+        fetchBlognamesInformell();
+    }//GEN-LAST:event_spInformellComponentShown
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new Calendar(anvID).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_skapaInlaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_skapaInlaggActionPerformed
      
     }//GEN-LAST:event_btn_skapaInlaggActionPerformed
 
     private void fetchBlognamesUtbildning() {
-        String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = 2";
+        String sqlquery = "select blogginlagg.titel from blogginlagg where b_id = (select b_id from blogg where bloggnamn = 'Utbildning')";
         ArrayList<HashMap<String, String>> blognames = new ArrayList<>();
         DefaultTableModel dmt = (DefaultTableModel)tblBlogTitlar.getModel();
         dmt.getDataVector().removeAllElements();
@@ -216,7 +237,26 @@ public class InloggadSida extends javax.swing.JFrame {
     }
     
     private void fetchBlognamesForskning() {
-        String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = 1";
+        String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = (select b_id from blogg where bloggnamn = 'Forskning')";
+        ArrayList<HashMap<String, String>> blognames = new ArrayList<>();
+        DefaultTableModel dmt = (DefaultTableModel)tblBlogTitlar.getModel();
+        dmt.getDataVector().removeAllElements();
+        revalidate();
+        try {
+         blognames = Databas.getDatabas().fetchRows(sqlquery);
+         
+         for(int i = 0; i < blognames.size(); i++) {
+             String names = blognames.get(i).get("TITEL");
+             
+             dmt.addRow(new Object[] {names});
+                 }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    private void fetchBlognamesInformell() {
+        String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = (select b_id from blogg where bloggnamn = 'Informell')";
         ArrayList<HashMap<String, String>> blognames = new ArrayList<>();
         DefaultTableModel dmt = (DefaultTableModel)tblBlogTitlar.getModel();
         dmt.getDataVector().removeAllElements();
@@ -241,15 +281,14 @@ public class InloggadSida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaUt;
-    private javax.swing.JButton btn_skapaInlagg;
     private javax.swing.JLabel lblBakgrundVit;
     private java.awt.Label lblRubrik;
     private javax.swing.JScrollPane spBlogtitlar;
-    private javax.swing.JScrollPane spCalender;
     private javax.swing.JScrollPane spForskning;
+    private javax.swing.JScrollPane spInformell;
     private javax.swing.JScrollPane spUtbildning;
-    private javax.swing.JTextArea taCalender;
     private javax.swing.JTextArea taForskning;
+    private javax.swing.JTextArea taInformell;
     private javax.swing.JTextArea taUtbildning;
     private javax.swing.JTable tblBlogTitlar;
     private javax.swing.JTabbedPane tpBloggar;

@@ -22,8 +22,8 @@ public class ForstaSida extends javax.swing.JFrame {
      */
     public ForstaSida() {
         initComponents();
-        anvandarID();
         fetchBlognamesInformell();
+        
     }
 
     /**
@@ -43,16 +43,11 @@ public class ForstaSida extends javax.swing.JFrame {
         taBlogFlow = new javax.swing.JTextArea();
         spBlogTitlar = new javax.swing.JScrollPane();
         tblBlogTitlar = new javax.swing.JTable();
-        spCalender = new javax.swing.JScrollPane();
-        taCalender = new javax.swing.JTextArea();
         lblBakgrundVit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+        setMaximumSize(new java.awt.Dimension(790, 623));
+        setMinimumSize(new java.awt.Dimension(790, 623));
         getContentPane().setLayout(null);
 
         lblRubrik.setAlignment(java.awt.Label.CENTER);
@@ -60,7 +55,7 @@ public class ForstaSida extends javax.swing.JFrame {
         lblRubrik.setFont(new java.awt.Font("Impact", 0, 52)); // NOI18N
         lblRubrik.setText("Informatikblogg");
         getContentPane().add(lblRubrik);
-        lblRubrik.setBounds(240, 0, 480, 120);
+        lblRubrik.setBounds(100, 20, 480, 120);
 
         tfAnvNamn.setText("Användarnamn");
         tfAnvNamn.setRequestFocusEnabled(false);
@@ -70,7 +65,7 @@ public class ForstaSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(tfAnvNamn);
-        tfAnvNamn.setBounds(770, 50, 160, 30);
+        tfAnvNamn.setBounds(600, 50, 160, 30);
 
         pfLosenord.setText("jPasswordField1");
         pfLosenord.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -79,7 +74,7 @@ public class ForstaSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pfLosenord);
-        pfLosenord.setBounds(770, 100, 160, 30);
+        pfLosenord.setBounds(600, 100, 160, 30);
 
         btnLoggaIn.setText("Logga in");
         btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
@@ -88,14 +83,15 @@ public class ForstaSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaIn);
-        btnLoggaIn.setBounds(840, 140, 78, 32);
+        btnLoggaIn.setBounds(680, 140, 78, 32);
 
+        taBlogFlow.setEditable(false);
         taBlogFlow.setColumns(20);
         taBlogFlow.setRows(5);
         spBlogFlow.setViewportView(taBlogFlow);
 
         getContentPane().add(spBlogFlow);
-        spBlogFlow.setBounds(260, 210, 510, 360);
+        spBlogFlow.setBounds(20, 210, 510, 360);
 
         tblBlogTitlar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,27 +120,21 @@ public class ForstaSida extends javax.swing.JFrame {
         }
 
         getContentPane().add(spBlogTitlar);
-        spBlogTitlar.setBounds(772, 212, 210, 360);
-
-        taCalender.setColumns(20);
-        taCalender.setRows(5);
-        taCalender.setText("Här ska kalendern \nligga");
-        spCalender.setViewportView(taCalender);
-
-        getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 223, 150);
+        spBlogTitlar.setBounds(560, 210, 210, 360);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
         lblBakgrundVit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/Namnlös.jpg"))); // NOI18N
         lblBakgrundVit.setText("jLabel1");
         getContentPane().add(lblBakgrundVit);
-        lblBakgrundVit.setBounds(0, 0, 1000, 630);
+        lblBakgrundVit.setBounds(0, 0, 790, 630);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
+        anvandarID();
         new InloggadSida(anvID).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoggaInActionPerformed
@@ -187,44 +177,9 @@ public class ForstaSida extends javax.swing.JFrame {
     private void pfLosenordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfLosenordFocusGained
         pfLosenord.setText("");
     }//GEN-LAST:event_pfLosenordFocusGained
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        setExtendedState(ForstaSida.MAXIMIZED_BOTH);
-    }//GEN-LAST:event_formWindowOpened
-
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ForstaSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ForstaSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ForstaSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ForstaSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-    }
-    
-    
+  
     private void fetchBlognamesInformell() {
-        String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = 3";
+        String sqlquery = "select blogginlagg.titel from blogginlagg where b_id = (select b_id from blogg where bloggnamn = 'Informell')";
         ArrayList<HashMap<String, String>> blognames = new ArrayList<>();
         try {
          blognames = Databas.getDatabas().fetchRows(sqlquery);
@@ -252,9 +207,7 @@ public class ForstaSida extends javax.swing.JFrame {
     private javax.swing.JPasswordField pfLosenord;
     private javax.swing.JScrollPane spBlogFlow;
     private javax.swing.JScrollPane spBlogTitlar;
-    private javax.swing.JScrollPane spCalender;
     private javax.swing.JTextArea taBlogFlow;
-    private javax.swing.JTextArea taCalender;
     private javax.swing.JTable tblBlogTitlar;
     private javax.swing.JTextField tfAnvNamn;
     // End of variables declaration//GEN-END:variables
