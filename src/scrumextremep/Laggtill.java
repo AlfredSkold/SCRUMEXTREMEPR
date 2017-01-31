@@ -172,6 +172,16 @@ public class Laggtill extends javax.swing.JFrame {
        
        //String sql = "INSERT INTO (anställd) VALUES ('"+forn+"', '"+lastn+"', '"+usern+"', '"+mail+"', '"+password+"')";
        
+       if(yesbox.isSelected() == true) {
+           
+           //String sql1 = "INSERT INTO (admin?) VALUES ('"+usern+"', "t")";
+           
+       }
+       
+       else {
+           
+           //String sql2 = "INSERT INTO (admin?) VALUES ('"+usern+"', "f")";
+       }
        
        
            
