@@ -102,6 +102,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JTabbedPane" name="tpBloggar">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tpBloggarMouseClicked"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="270" y="190" width="490" height="440"/>
@@ -129,6 +132,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="taForskning">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
@@ -154,6 +158,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="taUtbildning">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>

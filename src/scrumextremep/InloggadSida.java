@@ -98,12 +98,19 @@ public class InloggadSida extends javax.swing.JFrame {
         getContentPane().add(spCalender);
         spCalender.setBounds(30, 210, 223, 150);
 
+        tpBloggar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tpBloggarMouseClicked(evt);
+            }
+        });
+
         spForskning.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 spForskningComponentShown(evt);
             }
         });
 
+        taForskning.setEditable(false);
         taForskning.setColumns(20);
         taForskning.setRows(5);
         spForskning.setViewportView(taForskning);
@@ -116,6 +123,7 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
 
+        taUtbildning.setEditable(false);
         taUtbildning.setColumns(20);
         taUtbildning.setRows(5);
         spUtbildning.setViewportView(taUtbildning);
@@ -181,6 +189,11 @@ public class InloggadSida extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         setExtendedState(InloggadSida.MAXIMIZED_BOTH);
     }//GEN-LAST:event_formWindowOpened
+
+    private void tpBloggarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tpBloggarMouseClicked
+        taForskning.removeAll();
+        taUtbildning.removeAll();
+    }//GEN-LAST:event_tpBloggarMouseClicked
 
     private void fetchBlognamesUtbildning() {
         String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = 2";

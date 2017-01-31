@@ -36,15 +36,15 @@ public class ForstaSida extends javax.swing.JFrame {
     private void initComponents() {
 
         lblRubrik = new java.awt.Label();
-        tfAnvNamn = new javax.swing.JTextField();
-        pfLosenord = new javax.swing.JPasswordField();
         btnLoggaIn = new javax.swing.JButton();
+        pfLosenord = new javax.swing.JPasswordField();
         spBlogFlow = new javax.swing.JScrollPane();
         taBlogFlow = new javax.swing.JTextArea();
         spBlogTitlar = new javax.swing.JScrollPane();
         tblBlogTitlar = new javax.swing.JTable();
         spCalender = new javax.swing.JScrollPane();
         taCalender = new javax.swing.JTextArea();
+        tfAnvNamn = new javax.swing.JTextField();
         lblBakgrundVit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,15 +62,14 @@ public class ForstaSida extends javax.swing.JFrame {
         getContentPane().add(lblRubrik);
         lblRubrik.setBounds(240, 0, 480, 120);
 
-        tfAnvNamn.setText("Användarnamn");
-        tfAnvNamn.setRequestFocusEnabled(false);
-        tfAnvNamn.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tfAnvNamnFocusGained(evt);
+        btnLoggaIn.setText("Logga in");
+        btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoggaInActionPerformed(evt);
             }
         });
-        getContentPane().add(tfAnvNamn);
-        tfAnvNamn.setBounds(770, 50, 160, 30);
+        getContentPane().add(btnLoggaIn);
+        btnLoggaIn.setBounds(840, 140, 78, 32);
 
         pfLosenord.setText("jPasswordField1");
         pfLosenord.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -80,15 +79,6 @@ public class ForstaSida extends javax.swing.JFrame {
         });
         getContentPane().add(pfLosenord);
         pfLosenord.setBounds(770, 100, 160, 30);
-
-        btnLoggaIn.setText("Logga in");
-        btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaInActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnLoggaIn);
-        btnLoggaIn.setBounds(840, 140, 78, 32);
 
         taBlogFlow.setColumns(20);
         taBlogFlow.setRows(5);
@@ -133,6 +123,15 @@ public class ForstaSida extends javax.swing.JFrame {
 
         getContentPane().add(spCalender);
         spCalender.setBounds(30, 210, 223, 150);
+
+        tfAnvNamn.setText("Användarnamn");
+        tfAnvNamn.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfAnvNamnFocusGained(evt);
+            }
+        });
+        getContentPane().add(tfAnvNamn);
+        tfAnvNamn.setBounds(770, 60, 160, 30);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,10 +179,6 @@ public class ForstaSida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblBlogTitlarMouseClicked
 
-    private void tfAnvNamnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfAnvNamnFocusGained
-        tfAnvNamn.setText("");
-    }//GEN-LAST:event_tfAnvNamnFocusGained
-
     private void pfLosenordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfLosenordFocusGained
         pfLosenord.setText("");
     }//GEN-LAST:event_pfLosenordFocusGained
@@ -191,6 +186,10 @@ public class ForstaSida extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         setExtendedState(ForstaSida.MAXIMIZED_BOTH);
     }//GEN-LAST:event_formWindowOpened
+
+    private void tfAnvNamnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfAnvNamnFocusGained
+        tfAnvNamn.setText("");
+    }//GEN-LAST:event_tfAnvNamnFocusGained
 
 
     /**
