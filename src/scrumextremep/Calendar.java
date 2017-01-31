@@ -30,9 +30,9 @@ public class Calendar extends javax.swing.JFrame {
 
         dateBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table2 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        table1 = new javax.swing.JTable();
         dateChoser = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -48,31 +48,51 @@ public class Calendar extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Meeting", "Date", "Time"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(table2);
+        if (table2.getColumnModel().getColumnCount() > 0) {
+            table2.getColumnModel().getColumn(0).setResizable(false);
+            table2.getColumnModel().getColumn(1).setResizable(false);
+            table2.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Meeting", "Date", "Time"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(table1);
+        if (table1.getColumnModel().getColumnCount() > 0) {
+            table1.getColumnModel().getColumn(0).setResizable(false);
+            table1.getColumnModel().getColumn(1).setResizable(false);
+            table1.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jLabel1.setText("Meeting");
 
@@ -148,10 +168,28 @@ public class Calendar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateBtnActionPerformed
-       
-        Date date = dateChoser.getCalendar().getTime();
-        
-       JOptionPane.showMessageDialog(rootPane, date);
+        ArrayList<HashMap<String, String>> Database = new ArrayList<>();
+         
+      
+         try {
+            Date date = dateChoser.getCalendar().getTime();
+           
+           String sql = "SELECT MOTE.NAMN, MOTE.DATUM, MOTE.STARTTID \n" +
+                   "from MOTE where DATUM = '"+date+"'";
+                     
+           Database = Databas.getDatabas().fetchRows(sql);
+           
+                       for(int i = 0; i < Database.size(); i++) {
+                String name = Database.get(i).get("NAMN");
+                String time = Database.get(i).get("STARTTID");
+                String Date = Database.get(i).get("DATUM");
+
+                DefaultTableModel dmt = (DefaultTableModel)table1.getModel();
+                dmt.addRow(new Object[] {name, time, Date});
+            }
+         }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_dateBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -213,7 +251,7 @@ public class Calendar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable table1;
+    private javax.swing.JTable table2;
     // End of variables declaration//GEN-END:variables
 }
