@@ -30,11 +30,11 @@ public class AdminAnd extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         profilelist = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        usern = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        pwordred = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        redemail = new javax.swing.JTextField();
         saver = new javax.swing.JButton();
         upadm = new javax.swing.JButton();
         deleteadm = new javax.swing.JButton();
@@ -50,27 +50,52 @@ public class AdminAnd extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Användarnamn");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usern.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Nytt lösenord");
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pwordred.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Redigera e-mail");
 
         saver.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         saver.setText("Spara");
+        saver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saverActionPerformed(evt);
+            }
+        });
 
         upadm.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         upadm.setText("Uppdatera till admin");
+        upadm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upadmActionPerformed(evt);
+            }
+        });
 
         deleteadm.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         deleteadm.setText("Ta bort som admin");
+        deleteadm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteadmActionPerformed(evt);
+            }
+        });
 
         deleteu.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         deleteu.setText("Ta bort användare");
+        deleteu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,11 +109,11 @@ public class AdminAnd extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2)
+                    .addComponent(usern)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3)
+                    .addComponent(pwordred)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4)
+                    .addComponent(redemail)
                     .addComponent(saver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(upadm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(deleteadm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -110,15 +135,15 @@ public class AdminAnd extends javax.swing.JFrame {
                         .addGap(138, 138, 138)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(usern, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pwordred, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(redemail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(saver)
                         .addGap(18, 18, 18)
@@ -132,6 +157,51 @@ public class AdminAnd extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void usernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernActionPerformed
+
+    private void upadmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upadmActionPerformed
+
+        String uname = usern.getText();
+       // String sql = "INSERT INTO (admin?) VALUES ('"+uname+"', "t")";
+        
+        
+
+    }//GEN-LAST:event_upadmActionPerformed
+
+    private void deleteadmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteadmActionPerformed
+
+        String uname = usern.getText();
+     // String sql = "UPDATE (admin?) SET '"f"' WHERE (användare?) = '"+uname+"'";
+        
+        
+        
+    }//GEN-LAST:event_deleteadmActionPerformed
+
+    private void deleteuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteuActionPerformed
+
+        String uname = usern.getText();
+        String sql = "DELETE FROM (användare?) WHERE Anvnamn = '"+uname+"'";
+        String sql1 = "DELETE FROM (admin?) WHERE Anvnamn = '"+uname+"'";
+        
+        
+        
+    }//GEN-LAST:event_deleteuActionPerformed
+
+    private void saverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saverActionPerformed
+
+        String uname = usern.getText();
+        String passw = pwordred.getText();
+        String mail = redemail.getText();
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_saverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,11 +245,11 @@ public class AdminAnd extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField profilelist;
+    private javax.swing.JTextField pwordred;
+    private javax.swing.JTextField redemail;
     private javax.swing.JButton saver;
     private javax.swing.JButton upadm;
+    private javax.swing.JTextField usern;
     // End of variables declaration//GEN-END:variables
 }
