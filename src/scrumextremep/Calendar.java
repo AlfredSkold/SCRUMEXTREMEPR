@@ -1,7 +1,5 @@
 
 package scrumextremep;
-import static com.sun.jmx.mbeanserver.Util.cast;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -36,7 +34,7 @@ public class Calendar extends javax.swing.JFrame {
         table2 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         table1 = new javax.swing.JTable();
-        dateChooser = new com.toedter.calendar.JDateChooser();
+        dateChoser = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -97,8 +95,6 @@ public class Calendar extends javax.swing.JFrame {
             table1.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        dateChooser.setDateFormatString("yyyy-MM-dd");
-
         jLabel1.setText("Meeting");
 
         jButton2.setText("Edit meeting");
@@ -138,7 +134,7 @@ public class Calendar extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateChoser, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(dateBtn)
                 .addGap(28, 28, 28)
@@ -154,7 +150,7 @@ public class Calendar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateChoser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(dateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,21 +169,31 @@ public class Calendar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateBtnActionPerformed
+<<<<<<< HEAD
 
+=======
+        ArrayList<HashMap<String, String>> Database = new ArrayList<>();
+         
+      
+>>>>>>> origin/master
          try {
-            SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String date = dFormat.format(dateChooser.getDate());
+            Date date = dateChoser.getCalendar().getTime();
            
+<<<<<<< HEAD
             // Showing all meetings on a specific date
             String sql = "SELECT MOTE.NAMN, MOTE.DATUM, MOTE.STARTTID \n" +
                          "from MOTE where MOTE.DATUM = '"+date+"'";
+=======
+           String sql = "SELECT MOTE.NAMN, MOTE.DATUM, MOTE.STARTTID \n" +
+                   "from MOTE where DATUM = '"+date+"'";
+>>>>>>> origin/master
                      
-
-           ArrayList<HashMap<String, String>> Database = Database = Databas.getDatabas().fetchRows(sql);
-                for(int i = 0; i < Database.size(); i++) {
+           Database = Databas.getDatabas().fetchRows(sql);
+           
+                       for(int i = 0; i < Database.size(); i++) {
                 String name = Database.get(i).get("NAMN");
-                String time = Database.get(i).get("DATUM");
-                String Date = Database.get(i).get("STARTTID");
+                String time = Database.get(i).get("STARTTID");
+                String Date = Database.get(i).get("DATUM");
 
                 DefaultTableModel dmt = (DefaultTableModel)table1.getModel();
                 dmt.addRow(new Object[] {name, time, Date});
@@ -251,7 +257,7 @@ public class Calendar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JButton dateBtn;
-    private com.toedter.calendar.JDateChooser dateChooser;
+    private com.toedter.calendar.JDateChooser dateChoser;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
