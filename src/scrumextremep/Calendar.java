@@ -174,13 +174,13 @@ public class Calendar extends javax.swing.JFrame {
 
     private void dateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateBtnActionPerformed
 
-       
          try {
             SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
             String date = dFormat.format(dateChooser.getDate());
            
-           String sql = "SELECT MOTE.NAMN, MOTE.DATUM, MOTE.STARTTID \n" +
-                   "from MOTE where MOTE.DATUM = '"+date+"'";
+            // Showing all meetings on a specific date
+            String sql = "SELECT MOTE.NAMN, MOTE.DATUM, MOTE.STARTTID \n" +
+                         "from MOTE where MOTE.DATUM = '"+date+"'";
                      
 
            ArrayList<HashMap<String, String>> Database = Database = Databas.getDatabas().fetchRows(sql);
@@ -192,6 +192,8 @@ public class Calendar extends javax.swing.JFrame {
                 DefaultTableModel dmt = (DefaultTableModel)table1.getModel();
                 dmt.addRow(new Object[] {name, time, Date});
             }
+                
+                
          }catch (Exception e) {
             System.out.println(e.getMessage());
         }
