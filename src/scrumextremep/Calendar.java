@@ -229,12 +229,12 @@ public class Calendar extends javax.swing.JFrame {
         
     try {
          String mSql = "select mote.NAMN, mote.DATUM, mote.STARTTID\n" +
-                              "from MOTE\n" +
-                              "join ANVINBJUDENMOTE\n" +
-                              "on mote.M_ID = ANVINBJUDENMOTE.M_ID\n" +
-                              "join ANVANDARE\n" +
-                              "on ANVINBJUDENMOTE.A_ID = ANVANDARE.A_ID\n" +
-                              "where ANVANDARE.a_ID = '"+anvID+"'";
+                       "from MOTE\n" +
+                       "join ANVINBJUDENMOTE\n" +
+                       "on mote.M_ID = ANVINBJUDENMOTE.M_ID\n" +
+                       "join ANVANDARE\n" +
+                       "on ANVINBJUDENMOTE.A_ID = ANVANDARE.A_ID\n" +
+                       "where ANVANDARE.a_ID = '" + anvID + "'";
                 
                 ArrayList<HashMap<String, String>> meetings = Databas.getDatabas().fetchRows(mSql);
                 
