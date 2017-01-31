@@ -20,6 +20,7 @@ public class Calendar extends javax.swing.JFrame {
     public Calendar(String anvandarID) {
         initComponents();
         anvID = anvandarID;
+        fillTable2();
     }
 
     /**
@@ -174,7 +175,6 @@ public class Calendar extends javax.swing.JFrame {
     private void dateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateBtnActionPerformed
 
         clearTable1();
-        clearTable2();
         
          try {
             SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -194,8 +194,7 @@ public class Calendar extends javax.swing.JFrame {
                 DefaultTableModel dmt = (DefaultTableModel)table1.getModel();
                 dmt.addRow(new Object[] {name, time, Date});
             }
-                
-                
+               
          }catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -226,16 +225,32 @@ public class Calendar extends javax.swing.JFrame {
         }
     }
     
-    private void clearTable2() {
-             
-        DefaultTableModel dm = (DefaultTableModel) table2.getModel();
+    private void fillTable2(){
+        
+    try {
+         String mSql = "select mote.NAMN, mote.DATUM, mote.STARTTID\n" +
+                              "from MOTE\n" +
+                              "join ANVINBJUDENMOTE\n" +
+                              "on mote.M_ID = ANVINBJUDENMOTE.M_ID\n" +
+                              "join ANVANDARE\n" +
+                              "on ANVINBJUDENMOTE.A_ID = ANVANDARE.A_ID\n" +
+                              "where ANVANDARE.a_ID = '"+anvID+"'";
+                
+                ArrayList<HashMap<String, String>> meetings = Databas.getDatabas().fetchRows(mSql);
+                
+                for(int i = 0; i < meetings.size(); i++) {
+                         String name = meetings.get(i).get("NAMN");
+                         String time = meetings.get(i).get("DATUM");
+                         String Date = meetings.get(i).get("STARTTID");
 
-        for (int i = 0; i < dm.getRowCount(); i++) {
-            for (int j = 0; j < dm.getColumnCount(); j++) {
-                dm.setRowCount(0);
-            }
+                DefaultTableModel dmt = (DefaultTableModel)table2.getModel();
+                dmt.addRow(new Object[] {name, time, Date});
+    }
+    } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
