@@ -224,7 +224,7 @@ public class ForstaSida extends javax.swing.JFrame {
     
     
     private void fetchBlognamesInformell() {
-        String sqlquery = "select BLOGGINLAGG.TITEL from BLOGGINLAGG where b_id = 3";
+        String sqlquery = "select blogginlagg.titel from blogginlagg where b_id = (select b_id from blogg where bloggnamn = 'Informell')";
         ArrayList<HashMap<String, String>> blognames = new ArrayList<>();
         try {
          blognames = Databas.getDatabas().fetchRows(sqlquery);
