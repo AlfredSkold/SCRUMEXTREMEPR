@@ -20,7 +20,7 @@ public class Calendar extends javax.swing.JFrame {
     public Calendar(String anvandarID) {
         initComponents();
         anvID = anvandarID;
-        fillTable2();
+        fillTblMoten2();
     }
 
     /**
@@ -32,11 +32,11 @@ public class Calendar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dateBtn = new javax.swing.JButton();
+        btnDate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table2 = new javax.swing.JTable();
+        tblMoten2 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        table1 = new javax.swing.JTable();
+        tblMoten1 = new javax.swing.JTable();
         dateChooser = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -45,19 +45,19 @@ public class Calendar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        dateBtn.setText("Choose date");
-        dateBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnDate.setText("Välj datum");
+        btnDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateBtnActionPerformed(evt);
+                btnDateActionPerformed(evt);
             }
         });
 
-        table2.setModel(new javax.swing.table.DefaultTableModel(
+        tblMoten2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Meeting", "Date", "Time"
+                "Möte", "Datum", "Tid"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -68,19 +68,19 @@ public class Calendar extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(table2);
-        if (table2.getColumnModel().getColumnCount() > 0) {
-            table2.getColumnModel().getColumn(0).setResizable(false);
-            table2.getColumnModel().getColumn(1).setResizable(false);
-            table2.getColumnModel().getColumn(2).setResizable(false);
+        jScrollPane1.setViewportView(tblMoten2);
+        if (tblMoten2.getColumnModel().getColumnCount() > 0) {
+            tblMoten2.getColumnModel().getColumn(0).setResizable(false);
+            tblMoten2.getColumnModel().getColumn(1).setResizable(false);
+            tblMoten2.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        table1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMoten1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Meeting", "Date", "Time"
+                "Möte", "Datum", "Tid"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -91,30 +91,30 @@ public class Calendar extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(table1);
-        if (table1.getColumnModel().getColumnCount() > 0) {
-            table1.getColumnModel().getColumn(0).setResizable(false);
-            table1.getColumnModel().getColumn(1).setResizable(false);
-            table1.getColumnModel().getColumn(2).setResizable(false);
+        jScrollPane2.setViewportView(tblMoten1);
+        if (tblMoten1.getColumnModel().getColumnCount() > 0) {
+            tblMoten1.getColumnModel().getColumn(0).setResizable(false);
+            tblMoten1.getColumnModel().getColumn(1).setResizable(false);
+            tblMoten1.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jLabel1.setText("Meeting");
 
-        jButton2.setText("Edit meeting");
+        jButton2.setText("Redigera möte");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        createBtn.setText("Create meeting");
+        createBtn.setText("Skapa möte");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createBtnActionPerformed(evt);
             }
         });
 
-        backBtn.setText("Back");
+        backBtn.setText("Tillbaka");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -139,7 +139,7 @@ public class Calendar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(dateBtn)
+                .addComponent(btnDate)
                 .addGap(28, 28, 28)
                 .addComponent(createBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -155,7 +155,7 @@ public class Calendar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDate, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(backBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)))
@@ -172,9 +172,9 @@ public class Calendar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateBtnActionPerformed
+    private void btnDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDateActionPerformed
 
-        clearTable1();
+        clearTblMoten1();
         
          try {
             SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -191,14 +191,14 @@ public class Calendar extends javax.swing.JFrame {
                 String time = Database.get(i).get("DATUM");
                 String Date = Database.get(i).get("STARTTID");
 
-                DefaultTableModel dmt = (DefaultTableModel)table1.getModel();
+                DefaultTableModel dmt = (DefaultTableModel)tblMoten1.getModel();
                 dmt.addRow(new Object[] {name, time, Date});
             }
                
          }catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }//GEN-LAST:event_dateBtnActionPerformed
+    }//GEN-LAST:event_btnDateActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -214,9 +214,9 @@ public class Calendar extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void clearTable1() {
+    private void clearTblMoten1() {
  
-        DefaultTableModel dm = (DefaultTableModel) table1.getModel();
+        DefaultTableModel dm = (DefaultTableModel) tblMoten1.getModel();
 
         for (int i = 0; i < dm.getRowCount(); i++) {
             for (int j = 0; j < dm.getColumnCount(); j++) {
@@ -225,7 +225,7 @@ public class Calendar extends javax.swing.JFrame {
         }
     }
     
-    private void fillTable2(){
+    private void fillTblMoten2(){
         
     try {
          String mSql = "select mote.NAMN, mote.DATUM, mote.STARTTID\n" +
@@ -243,7 +243,7 @@ public class Calendar extends javax.swing.JFrame {
                          String time = meetings.get(i).get("DATUM");
                          String Date = meetings.get(i).get("STARTTID");
 
-                DefaultTableModel dmt = (DefaultTableModel)table2.getModel();
+                DefaultTableModel dmt = (DefaultTableModel)tblMoten2.getModel();
                 dmt.addRow(new Object[] {name, time, Date});
     }
     } catch (Exception e) {
@@ -254,14 +254,14 @@ public class Calendar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton btnDate;
     private javax.swing.JButton createBtn;
-    private javax.swing.JButton dateBtn;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable table1;
-    private javax.swing.JTable table2;
+    private javax.swing.JTable tblMoten1;
+    private javax.swing.JTable tblMoten2;
     // End of variables declaration//GEN-END:variables
 }
