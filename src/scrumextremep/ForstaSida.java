@@ -85,6 +85,7 @@ public class ForstaSida extends javax.swing.JFrame {
         getContentPane().add(btnLoggaIn);
         btnLoggaIn.setBounds(680, 140, 78, 32);
 
+        taBlogFlow.setEditable(false);
         taBlogFlow.setColumns(20);
         taBlogFlow.setRows(5);
         spBlogFlow.setViewportView(taBlogFlow);
