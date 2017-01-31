@@ -193,8 +193,7 @@ public class InloggadSida extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btn_skapaInlaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_skapaInlaggActionPerformed
-        new CreateBlogg(anvID).setVisible(true);
-        dispose();
+     
     }//GEN-LAST:event_btn_skapaInlaggActionPerformed
 
     private void fetchBlognamesUtbildning() {
