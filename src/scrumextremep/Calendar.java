@@ -173,6 +173,9 @@ public class Calendar extends javax.swing.JFrame {
 
     private void dateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateBtnActionPerformed
 
+        clearTable1();
+        clearTable2();
+        
          try {
             SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
             String date = dFormat.format(dateChooser.getDate());
@@ -212,6 +215,27 @@ public class Calendar extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void clearTable1() {
+ 
+        DefaultTableModel dm = (DefaultTableModel) table1.getModel();
+
+        for (int i = 0; i < dm.getRowCount(); i++) {
+            for (int j = 0; j < dm.getColumnCount(); j++) {
+                dm.setRowCount(0);
+            }
+        }
+    }
+    
+    private void clearTable2() {
+             
+        DefaultTableModel dm = (DefaultTableModel) table2.getModel();
+
+        for (int i = 0; i < dm.getRowCount(); i++) {
+            for (int j = 0; j < dm.getColumnCount(); j++) {
+                dm.setRowCount(0);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
