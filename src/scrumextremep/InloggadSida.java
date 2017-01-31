@@ -37,8 +37,6 @@ public class InloggadSida extends javax.swing.JFrame {
         lblRubrik = new java.awt.Label();
         spBlogtitlar = new javax.swing.JScrollPane();
         tblBlogTitlar = new javax.swing.JTable();
-        spCalender = new javax.swing.JScrollPane();
-        taCalender = new javax.swing.JTextArea();
         tpBloggar = new javax.swing.JTabbedPane();
         spForskning = new javax.swing.JScrollPane();
         taForskning = new javax.swing.JTextArea();
@@ -47,6 +45,7 @@ public class InloggadSida extends javax.swing.JFrame {
         spInformell = new javax.swing.JScrollPane();
         taInformell = new javax.swing.JTextArea();
         btnLoggaUt = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         lblBakgrundVit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,14 +90,6 @@ public class InloggadSida extends javax.swing.JFrame {
 
         getContentPane().add(spBlogtitlar);
         spBlogtitlar.setBounds(772, 212, 210, 360);
-
-        taCalender.setColumns(20);
-        taCalender.setRows(5);
-        taCalender.setText("Här ska kalendern \nligga");
-        spCalender.setViewportView(taCalender);
-
-        getContentPane().add(spCalender);
-        spCalender.setBounds(30, 210, 166, 150);
 
         spForskning.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -149,7 +140,16 @@ public class InloggadSida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLoggaUt);
-        btnLoggaUt.setBounds(20, 20, 90, 29);
+        btnLoggaUt.setBounds(20, 20, 90, 32);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/scrumextremep/calendarIcon.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(10, 190, 240, 250);
 
         lblBakgrundVit.setBackground(java.awt.Color.white);
         lblBakgrundVit.setForeground(new java.awt.Color(255, 255, 255));
@@ -207,6 +207,11 @@ public class InloggadSida extends javax.swing.JFrame {
     private void spInformellComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_spInformellComponentShown
         fetchBlognamesInformell();
     }//GEN-LAST:event_spInformellComponentShown
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new Calendar(anvID).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void fetchBlognamesUtbildning() {
         String sqlquery = "select blogginlagg.titel from blogginlagg where b_id = (select b_id from blogg where bloggnamn = 'Utbildning')";
@@ -272,14 +277,13 @@ public class InloggadSida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaUt;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblBakgrundVit;
     private java.awt.Label lblRubrik;
     private javax.swing.JScrollPane spBlogtitlar;
-    private javax.swing.JScrollPane spCalender;
     private javax.swing.JScrollPane spForskning;
     private javax.swing.JScrollPane spInformell;
     private javax.swing.JScrollPane spUtbildning;
-    private javax.swing.JTextArea taCalender;
     private javax.swing.JTextArea taForskning;
     private javax.swing.JTextArea taInformell;
     private javax.swing.JTextArea taUtbildning;
