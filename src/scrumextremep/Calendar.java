@@ -185,8 +185,8 @@ public class Calendar extends javax.swing.JFrame {
            ArrayList<HashMap<String, String>> Database = Database = Databas.getDatabas().fetchRows(sql);
                 for(int i = 0; i < Database.size(); i++) {
                 String name = Database.get(i).get("NAMN");
-                String time = Database.get(i).get("STARTTID");
-                String Date = Database.get(i).get("DATUM");
+                String time = Database.get(i).get("DATUM");
+                String Date = Database.get(i).get("STARTTID");
 
                 DefaultTableModel dmt = (DefaultTableModel)table1.getModel();
                 dmt.addRow(new Object[] {name, time, Date});
