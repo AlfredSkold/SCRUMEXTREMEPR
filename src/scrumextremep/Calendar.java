@@ -1,5 +1,7 @@
 
 package scrumextremep;
+import static com.sun.jmx.mbeanserver.Util.cast;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -170,17 +172,17 @@ public class Calendar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateBtnActionPerformed
-        ArrayList<HashMap<String, String>> Database = new ArrayList<>();
-         
-      
+
+       
          try {
-            Date date = dateChooser.getCalendar().getTime();
+            SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String date = dFormat.format(dateChooser.getDate());
            
            String sql = "SELECT MOTE.NAMN, MOTE.DATUM, MOTE.STARTTID \n" +
-                   "from MOTE where DATUM = '"+date+"'";
+                   "from MOTE where MOTE.DATUM = '"+date+"'";
                      
-           Database = Databas.getDatabas().fetchRows(sql);
-           
+
+           ArrayList<HashMap<String, String>> Database = Database = Databas.getDatabas().fetchRows(sql);
                 for(int i = 0; i < Database.size(); i++) {
                 String name = Database.get(i).get("NAMN");
                 String time = Database.get(i).get("STARTTID");
