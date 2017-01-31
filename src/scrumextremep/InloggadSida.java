@@ -38,15 +38,15 @@ public class InloggadSida extends javax.swing.JFrame {
         spBlogtitlar = new javax.swing.JScrollPane();
         tblBlogTitlar = new javax.swing.JTable();
         tpBloggar = new javax.swing.JTabbedPane();
-        spInformell = new javax.swing.JScrollPane();
-        taInformell = new javax.swing.JTextArea();
+        spForskning = new javax.swing.JScrollPane();
+        taForskning = new javax.swing.JTextArea();
         spUtbildning = new javax.swing.JScrollPane();
         taUtbildning = new javax.swing.JTextArea();
+        spInformell = new javax.swing.JScrollPane();
+        taInformell = new javax.swing.JTextArea();
         btnLoggaUt = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         lblBakgrundVit = new javax.swing.JLabel();
-        spForskning = new javax.swing.JScrollPane();
-        taForskning = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(790, 623));
@@ -86,18 +86,18 @@ public class InloggadSida extends javax.swing.JFrame {
         getContentPane().add(spBlogtitlar);
         spBlogtitlar.setBounds(530, 210, 210, 360);
 
-        spInformell.addComponentListener(new java.awt.event.ComponentAdapter() {
+        spForskning.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                spInformellComponentShown(evt);
+                spForskningComponentShown(evt);
             }
         });
 
-        taInformell.setEditable(false);
-        taInformell.setColumns(20);
-        taInformell.setRows(5);
-        spInformell.setViewportView(taInformell);
+        taForskning.setEditable(false);
+        taForskning.setColumns(20);
+        taForskning.setRows(5);
+        spForskning.setViewportView(taForskning);
 
-        tpBloggar.addTab("Informell", spInformell);
+        tpBloggar.addTab("Forskning", spForskning);
 
         spUtbildning.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -111,6 +111,19 @@ public class InloggadSida extends javax.swing.JFrame {
         spUtbildning.setViewportView(taUtbildning);
 
         tpBloggar.addTab("Utbildning", spUtbildning);
+
+        spInformell.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                spInformellComponentShown(evt);
+            }
+        });
+
+        taInformell.setEditable(false);
+        taInformell.setColumns(20);
+        taInformell.setRows(5);
+        spInformell.setViewportView(taInformell);
+
+        tpBloggar.addTab("Informell", spInformell);
 
         getContentPane().add(tpBloggar);
         tpBloggar.setBounds(20, 190, 490, 440);
@@ -139,20 +152,6 @@ public class InloggadSida extends javax.swing.JFrame {
         lblBakgrundVit.setText("jLabel1");
         getContentPane().add(lblBakgrundVit);
         lblBakgrundVit.setBounds(0, 0, 750, 630);
-
-        spForskning.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                spForskningComponentShown(evt);
-            }
-        });
-
-        taForskning.setEditable(false);
-        taForskning.setColumns(20);
-        taForskning.setRows(5);
-        spForskning.setViewportView(taForskning);
-
-        getContentPane().add(spForskning);
-        spForskning.setBounds(20, 210, 488, 414);
 
         pack();
         setLocationRelativeTo(null);
